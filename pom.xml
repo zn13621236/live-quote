@@ -3,8 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.archer</groupId>
-	<artifactId>mailman</artifactId>
-	<name>MailMan1</name>
+	<artifactId>live-quote</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -237,4 +236,5 @@
 
 	</repositories>
 
+	<name>live-quote</name>
 </project>
