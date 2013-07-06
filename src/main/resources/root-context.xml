@@ -11,13 +11,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- mongo db config bean -->
 
-<!-- 	<mongo:mongo host="#{ systemProperties['mongo.host'] }"
-		port="27017" /> 
-		username="#{ systemProperties['mongo.username']}" password="#{ systemProperties['mongo.password']}"
-		-->
 	<mongo:db-factory host="#{ systemProperties['mongo.host'] }"
-		port="27017" dbname="cedar"
-		 />
+		port="27017" dbname="cedar" />
 
 	<bean id="mongoTypeMapper"
 		class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
@@ -53,5 +48,5 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 			</list>
 		</property>
 	</bean>
-	<context:component-scan base-package="com.archer.mailman" />
+	<context:component-scan base-package="com.archer.livequote" />
 </beans>
