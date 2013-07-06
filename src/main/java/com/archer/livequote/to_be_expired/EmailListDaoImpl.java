@@ -1,11 +1,11 @@
-package com.archer.livequote.dao;
+package com.archer.livequote.to_be_expired;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.archer.livequote.db.domain.EmailList;
+import com.archer.livequote.dao.CrudDao;
 
 @Repository
 public class EmailListDaoImpl implements EmailListDao {

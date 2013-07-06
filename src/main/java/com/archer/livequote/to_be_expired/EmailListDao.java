@@ -1,8 +1,7 @@
-package com.archer.livequote.dao;
+package com.archer.livequote.to_be_expired;
 
 import java.util.List;
 
-import com.archer.livequote.db.domain.EmailList;
 
 public interface EmailListDao {
 

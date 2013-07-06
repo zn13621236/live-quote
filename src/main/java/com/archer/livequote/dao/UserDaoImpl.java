@@ -17,8 +17,8 @@ public class UserDaoImpl implements UserDao {
 		String time = CommonUtil.getCurrentTime();
 		ue.setGuid(CommonUtil.generateUid());
 		ue.setAddDate(time);
+		ue.setUsedCount(1);
 		ue.setModDate(time);
-		ue.setUsedNumber(1);
 		return crud.save(ue);
 	}
 
@@ -27,46 +27,34 @@ public class UserDaoImpl implements UserDao {
 		return crud.remove("guid", guid, UserEntity.class);
 	}
 
-	@Override
-	public UserEntity updateCell(String guid, String cell) {
-		String time = CommonUtil.getCurrentTime();
-		UserEntity ue = getUserByGuid(guid);
-		ue.setCell(cell);
-		ue.setModDate(time);
-		return crud.save(ue);
-	}
+//	@Override
+//	public UserEntity updateCell(String guid, String cell) {
+//		String time = CommonUtil.getCurrentTime();
+//		UserEntity ue = getUserByGuid(guid);
+//		ue.setCell(cell);
+//		return crud.save(ue);
+//	}
 
-	@Override
-	public UserEntity updateUserEmail(String guid, String newEmail) {
-		String time = CommonUtil.getCurrentTime();
-		UserEntity ue = getUserByGuid(guid);
-		ue.setEmail(newEmail);
-		ue.setModDate(time);
-		return crud.save(ue);
-	}
+//	@Override
+//	public UserEntity updateUserEmail(String guid, String newEmail) {
+//		String time = CommonUtil.getCurrentTime();
+//		UserEntity ue = getUserByGuid(guid);
+//		ue.setEmail(newEmail);
+//		return crud.save(ue);
+//	}
 
 	@Override
 	public boolean increaseUsedNumber(String guid) {
 		String time = CommonUtil.getCurrentTime();
 		UserEntity ue = getUserByGuid(guid);
-		ue.setUsedNumber(ue.getUsedNumber() + 1);
+		ue.setUsedCount(ue.getUsedCount() + 1);
 		ue.setModDate(time);
-		crud.save(ue);
-		return true;
+		return crud.save(ue)!=null;
 	}
 
 	@Override
 	public UserEntity getUserByGuid(String guid) {
 		return crud.getByField("guid", guid, UserEntity.class);
-	}
-
-	@Override
-	public UserEntity updateStatus(String guid, String status) {
-		String time = CommonUtil.getCurrentTime();
-		UserEntity ue = getUserByGuid(guid);
-		ue.setStatus(status);
-		ue.setModDate(time);
-		return crud.save(ue);
 	}
 
 }

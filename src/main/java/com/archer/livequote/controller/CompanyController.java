@@ -1,7 +1,6 @@
 package com.archer.livequote.controller;
 
 import java.text.DateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -18,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.archer.livequote.dao.CompanyDao;
-import com.archer.livequote.dao.EmailListDao;
 import com.archer.livequote.db.domain.CompanyEntity;
+import com.archer.livequote.to_be_expired.EmailListDao;
 
 @Controller
 @RequestMapping("/company")
@@ -56,7 +55,6 @@ public class CompanyController {
 	public String createCompany(@ModelAttribute("company") CompanyEntity comp,
 			BindingResult result) {
 		cdao.insertNewCompany(comp);
-		edao.addToEmailList(comp.getCategory(), comp.getEmail());
 		return "company";
 	}
 
@@ -86,9 +84,6 @@ public class CompanyController {
 	public String updateEmail(@PathVariable String companyGuid,
 			@RequestParam("newEmail") String newEmail, @RequestParam("oldEmail") String oldEmail,Model model) {
 		cdao.updateCompanyEmail(companyGuid, oldEmail, newEmail);
-		CompanyEntity ce = cdao.getByGuid(companyGuid);
-		edao.removeFromEmailList(ce.getCategory(), oldEmail);
-		edao.addToEmailList(ce.getCategory(), Arrays.asList(newEmail));
 		return manageEmail(companyGuid, model);
 	}
 
@@ -97,8 +92,6 @@ public class CompanyController {
 	public String removeEmail(@PathVariable String companyGuid,
 			@PathVariable String emailToRemove, Model model) {
 		cdao.removeEmail(companyGuid, emailToRemove);
-		CompanyEntity ce = cdao.getByGuid(companyGuid);
-		edao.removeFromEmailList(ce.getCategory(), emailToRemove);
 		return manageEmail(companyGuid, model);
 	}
 
@@ -107,8 +100,6 @@ public class CompanyController {
 	public String addEmail(@PathVariable String companyGuid,
 			@PathVariable String emailToAdd, Model model) {
 		cdao.addCompanyEmail(companyGuid, emailToAdd);
-		CompanyEntity ce = cdao.getByGuid(companyGuid);
-		edao.addToEmailList(ce.getCategory(), Arrays.asList(emailToAdd));
 		return manageEmail(companyGuid, model);
 	}
 

@@ -1,4 +1,4 @@
-package com.archer.livequote.db.domain;
+package com.archer.livequote.to_be_expired;
 
 import java.util.List;
 

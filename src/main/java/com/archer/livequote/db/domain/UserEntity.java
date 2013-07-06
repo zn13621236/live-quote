@@ -22,11 +22,21 @@ public class UserEntity {
 	private String zip;
 	@Field("add_date")
 	private String addDate;
+	@Field("mod_date")
+	private String modDate;
 	@Field("quote_history")
 	private List<QuoteHistory> quoteHistory;
 
 	public ObjectId getId() {
 		return id;
+	}
+
+	public String getModDate() {
+		return modDate;
+	}
+
+	public void setModDate(String modDate) {
+		this.modDate = modDate;
 	}
 
 	public String getAddDate() {
