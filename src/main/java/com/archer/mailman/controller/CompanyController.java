@@ -130,8 +130,8 @@ public class CompanyController {
         if(comp.getCompanyName()!=null){
         	ce.setCompanyName(comp.getCompanyName());
         }
-        if(comp.getPassWord()!=null){
-        	ce.setPassWord(comp.getPassWord());
+        if(comp.getPassword()!=null){
+        	ce.setPassword(comp.getPassword());
         }
         cdao.insertNewCompany(ce);
 		return "companyEdit";

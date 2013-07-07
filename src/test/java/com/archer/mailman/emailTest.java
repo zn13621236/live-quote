@@ -11,7 +11,7 @@ import com.archer.mailman.dto.EmailTemplate;
 import com.archer.mailman.service.EmailService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/root-context.xml" })
+@ContextConfiguration(locations = {"/ApplicationContext.xml"})
 public class emailTest {
 
 	@Autowired

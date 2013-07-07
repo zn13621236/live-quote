@@ -13,8 +13,8 @@
         <td><form:input path="companyName"  /></td> 
     </tr>
         <tr>
-        <td><form:label path="passWord">password</form:label></td>
-        <td><form:input path="passWord" /></td> 
+        <td><form:label path="password">password</form:label></td>
+        <td><form:input path="password" /></td>
     </tr>
     <tr>
         <td><form:label path="email">Email</form:label></td>

@@ -155,7 +155,7 @@ public class CompanyDaoImpl implements CompanyDao {
 	public CompanyEntity updatePassword(String guid, String newPassword){		
 		String time = CommonUtil.getCurrentTime();
 		CompanyEntity comp = getByGuid(guid);
-		comp.setPassWord(newPassword);
+		comp.setPassword(newPassword);
 		comp.setModDate(time);
 		return crud.save(comp);
 	}

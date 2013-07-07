@@ -17,8 +17,8 @@
 		<tr>
 			<td>company password</td>
 			<td><c:out value="****"></c:out></td>
-			        <td><form:label path="passWord">new password</form:label></td>
-        <td><form:input path="passWord" /></td> 
+			        <td><form:label path="password">new password</form:label></td>
+        <td><form:input path="password" /></td>
 		</tr>
 		<tr>
 			<td>start date</td>
