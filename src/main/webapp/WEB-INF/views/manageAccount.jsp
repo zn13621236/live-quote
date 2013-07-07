@@ -4,7 +4,7 @@
 <title>company</title>
 </head>
 <body>
-	<h2>manage email</h2>
+	<h2>manage account</h2>
 	<table border="1">
 
 
@@ -32,9 +32,19 @@
 			<td>Phone number</td>
 			<td>${company.phone}</td>
 		</tr>
-
+		<tr>
+			<td>start date</td>
+			<td><c:out value="${company.addDate}"></c:out></td>
+		</tr>
+		<c:if test="${company.expireDate}!=null">
+			<tr>
+				<td>expire date</td>
+				<td><c:out value="${company.expireDate}"></c:out></td>
+			</tr>
+		</c:if>
 		<c:forEach var="j" items="${company.area}">
 			<tr>
+				<td>Company area</td>
 				<td><c:out value="${j}" /></td>
 				<td><a
 					href="<c:url value="/company/${company.guid}/area/add"/>">add</a></td>
@@ -45,8 +55,9 @@
 			</tr>
 		</c:forEach>
 
-		<c:forEach var="j" items="${company.category}">
+		<c:forEach var="h" items="${company.category}">
 			<tr>
+				<td>Company category</td>
 				<td><c:out value="${h}" /></td>
 				<td><a
 					href="<c:url value="/company/${company.guid}/category/add"/>">add</a></td>
@@ -59,12 +70,14 @@
 
 		<c:forEach var="i" items="${company.email}">
 			<tr>
+				<td>Company email list</td>
 				<td><c:out value="${i}" /></td>
 				<td><a
 					href="<c:url value="/company/${company.guid}/emailManagement/add"/>">add</a></td>
 
 				<td><a
-					href="<c:url value="/company/${company.guid}/emailManagement/remove"/>?oldEmail=${i}">remove</a></td>
+					href="<c:url value="/company/${company.guid}/emailManagement/remove"/>?oldEmail=${i}">remove</a>
+				</td>
 				<td><a
 					href="<c:url value="/company/${company.guid}/emailManagement/update"/>?oldEmail=${i}">update</a></td>
 			</tr>

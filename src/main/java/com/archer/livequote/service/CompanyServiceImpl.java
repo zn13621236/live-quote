@@ -44,4 +44,24 @@ public class CompanyServiceImpl implements CompanyService {
 	return cdao.updateComapnyInfo(guid, comp) != null;
     }
 
+    @Override
+    public boolean removeArea(String guid, String areaToRemove) {
+	return cdao.removeArea(guid, areaToRemove)!=null;
+    }
+
+    @Override
+    public void addArea(String companyGuid, String areaToAdd) {
+	 cdao.addArea(companyGuid, areaToAdd);	
+    }
+
+    @Override
+    public boolean removeCategory(String guid, String categoryToRemove) {
+	return cdao.removeCategory(guid, categoryToRemove)!=null;
+    }
+
+    @Override
+    public void addCategory(String companyGuid, String categoryToAdd) {
+	 cdao.addCategory(companyGuid, categoryToAdd);	
+    }
+
 }

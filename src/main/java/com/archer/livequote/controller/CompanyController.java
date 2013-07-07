@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.archer.livequote.dao.CompanyDao;
 import com.archer.livequote.db.domain.CompanyEntity;
 import com.archer.livequote.service.CompanyService;
-import com.archer.livequote.to_be_expired.EmailListDao;
 
 @Controller
 @RequestMapping("/company")
@@ -56,26 +54,28 @@ public class CompanyController {
 	cService.createCompany(comp);
 	return "manageAccount";
     }
-//manage account
+
+    // manage account
     @RequestMapping(value = "/{companyGuid}/manage", method = RequestMethod.GET)
     public String manageAccount(@PathVariable String companyGuid, Model model) {
 	CompanyEntity ce = cService.getCompanyById(companyGuid);
 	model.addAttribute("company", ce);
 	return "manageAccount";
     }
-    
+
     // edit email.....
 
     // email management page
-    @RequestMapping(value = "/{companyGuid}/emailManagement", method = RequestMethod.GET)
-    public String manageEmail(@PathVariable String companyGuid, Model model) {
-	CompanyEntity ce = cService.getCompanyById(companyGuid);
-	model.addAttribute("company", ce);
-	return "manageAccount";
-    }
+    // @RequestMapping(value = "/{companyGuid}/emailManagement", method =
+    // RequestMethod.GET)
+    // public String manageEmail(@PathVariable String companyGuid, Model model)
+    // {
+    // CompanyEntity ce = cService.getCompanyById(companyGuid);
+    // model.addAttribute("company", ce);
+    // return "manageAccount";
+    // }
 
     // update email
-
     @RequestMapping(value = "/{companyGuid}/emailManagement/update", method = RequestMethod.GET)
     public String updateEmail(@PathVariable String companyGuid,
 	    @RequestParam("oldEmail") String oldEmail, Model model) {
@@ -90,25 +90,95 @@ public class CompanyController {
 	    @RequestParam("newEmail") String newEmail,
 	    @RequestParam("oldEmail") String oldEmail, Model model) {
 	cService.updateEmail(companyGuid, oldEmail, newEmail);
-	return manageEmail(companyGuid, model);
+	return manageAccount(companyGuid, model);
     }
 
     // remove email
-    @RequestMapping(value = "/{companyGuid}/emailManagement/remove/{emailToRemove}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{companyGuid}/emailManagement/remove", method = RequestMethod.GET)
+    public String removeEmailPage(@PathVariable String companyGuid,
+	    @RequestParam String oldEmail, Model model) {
+	model.addAttribute("oldEmail", oldEmail);
+	return "emailRemove";
+    }
+
+    @RequestMapping(value = "/{companyGuid}/emailManagement/remove", method = RequestMethod.POST)
     public String removeEmail(@PathVariable String companyGuid,
-	    @PathVariable String emailToRemove, Model model) {
-	cService.removeEmail(companyGuid, emailToRemove);
-	return manageEmail(companyGuid, model);
+	    @RequestParam String oldEmail, Model model) {
+	cService.removeEmail(companyGuid, oldEmail);
+	return manageAccount(companyGuid, model);
     }
 
     // add email
-    @RequestMapping(value = "/{companyGuid}/emailManagement/add/{emailToAdd}", method = RequestMethod.POST)
-    public String addEmail(@PathVariable String companyGuid,
-	    @PathVariable String emailToAdd, Model model) {
-	cService.addEmail(companyGuid, emailToAdd);
-	return manageEmail(companyGuid, model);
+    @RequestMapping(value = "/{companyGuid}/emailManagement/add", method = RequestMethod.GET)
+    public String addEmail(@PathVariable String companyGuid, Model model) {
+	return "emailAdd";
     }
 
+    @RequestMapping(value = "/{companyGuid}/emailManagement/add", method = RequestMethod.POST)
+    public String addEmail(@PathVariable String companyGuid,
+	    @RequestParam String newEmail, Model model) {
+	cService.addEmail(companyGuid, newEmail);
+	return manageAccount(companyGuid, model);
+    }
+
+    // remove area
+    @RequestMapping(value = "/{companyGuid}/area/remove", method = RequestMethod.GET)
+    public String removeAreaPage(@PathVariable String companyGuid,
+	    @RequestParam String oldArea, Model model) {
+	model.addAttribute("oldArea", oldArea);
+	return "areaRemove";
+    }
+
+    @RequestMapping(value = "/{companyGuid}/area/remove", method = RequestMethod.POST)
+    public String removeArea(@PathVariable String companyGuid,
+	    @RequestParam String oldArea, Model model) {
+	cService.removeArea(companyGuid, oldArea);
+	return manageAccount(companyGuid, model);
+    }
+
+    // add area
+    @RequestMapping(value = "/{companyGuid}/area/add", method = RequestMethod.GET)
+    public String addArea(@PathVariable String companyGuid, Model model) {
+	return "areaAdd";
+    }
+
+    @RequestMapping(value = "/{companyGuid}/area/add", method = RequestMethod.POST)
+    public String addArea(@PathVariable String companyGuid,
+	    @RequestParam String newArea, Model model) {
+	cService.addArea(companyGuid, newArea);
+	return manageAccount(companyGuid, model);
+    }
+    
+    // remove category
+    @RequestMapping(value = "/{companyGuid}/category/remove", method = RequestMethod.GET)
+    public String removeCategoryPage(@PathVariable String companyGuid,
+	    @RequestParam String oldCategory, Model model) {
+	model.addAttribute("oldCategory", oldCategory);
+	return "areaRemove";
+    }
+
+    @RequestMapping(value = "/{companyGuid}/category/remove", method = RequestMethod.POST)
+    public String removeCategory(@PathVariable String companyGuid,
+	    @RequestParam String oldCategory, Model model) {
+	cService.removeCategory(companyGuid, oldCategory);
+	return manageAccount(companyGuid, model);
+    }
+
+    // add category
+    @RequestMapping(value = "/{companyGuid}/category/add", method = RequestMethod.GET)
+    public String addCategory(@PathVariable String companyGuid, Model model) {
+	return "categoryAdd";
+    }
+
+    @RequestMapping(value = "/{companyGuid}/category/add", method = RequestMethod.POST)
+    public String addCategory(@PathVariable String companyGuid,
+	    @RequestParam String newCategory, Model model) {
+	cService.addCategory(companyGuid, newCategory);
+	return manageAccount(companyGuid, model);
+    }
+    
+    
+    
     // edit company regular fields....
 
     @RequestMapping(value = "/{companyGuid}", method = RequestMethod.GET)
@@ -125,7 +195,9 @@ public class CompanyController {
 	    @ModelAttribute("company2") CompanyEntity comp,
 	    BindingResult result, Model model) {
 	cService.updateCompany(companyGuid, comp);
-	return "companyEdit";
+	return manageAccount(companyGuid, model);
     }
+    
+    
 
 }

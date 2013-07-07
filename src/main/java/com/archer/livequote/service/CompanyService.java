@@ -2,7 +2,6 @@ package com.archer.livequote.service;
 
 import com.archer.livequote.db.domain.CompanyEntity;
 
-
 public interface CompanyService {
 
     void createCompany(CompanyEntity comp);
@@ -15,8 +14,14 @@ public interface CompanyService {
 
     void addEmail(String companyGuid, String emailToAdd);
 
-    boolean updateCompany(String guid, CompanyEntity comp);
+    boolean removeArea(String guid, String emailToRemove);
 
-	
+    void addArea(String companyGuid, String areaToAdd);
+
+    boolean removeCategory(String guid, String categoryToRemove);
+
+    void addCategory(String companyGuid, String categoryToAdd);
+
+    boolean updateCompany(String guid, CompanyEntity comp);
 
 }

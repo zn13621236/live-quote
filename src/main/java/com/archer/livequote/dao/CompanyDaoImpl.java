@@ -1,5 +1,6 @@
 package com.archer.livequote.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,9 +86,11 @@ public class CompanyDaoImpl implements CompanyDao {
     public CompanyEntity addCompanyEmail(String guid, String newEmail) {
 	String time = CommonUtil.getCurrentTime();
 	CompanyEntity comp = getByGuid(guid);
+	if(!comp.getEmail().contains(newEmail)){
 	comp.getEmail().add(newEmail);
 	comp.setModDate(time);
-	return crud.save(comp);
+	return crud.save(comp);}
+	return null;
     }
 
     @Override
@@ -95,10 +98,13 @@ public class CompanyDaoImpl implements CompanyDao {
 	String time = CommonUtil.getCurrentTime();
 	CompanyEntity comp = getByGuid(guid);
 	List<String> emails = comp.getEmail();
-	for (String email : emails) {
-	    if (email.equalsIgnoreCase(emailToRemove)) {
-		emails.remove(emailToRemove);
-	    }
+
+	Iterator<String> it = emails.iterator();
+	while(it.hasNext()){
+	    String email=it.next();
+	   if( email.equalsIgnoreCase(emailToRemove)){
+	       it.remove();
+	   }
 	}
 	comp.setModDate(time);
 	return crud.save(comp);
@@ -110,9 +116,11 @@ public class CompanyDaoImpl implements CompanyDao {
     public CompanyEntity addCategory(String guid, String newCategory) {
 	String time = CommonUtil.getCurrentTime();
 	CompanyEntity comp = getByGuid(guid);
+	if(!comp.getCategory().contains(newCategory)){
 	comp.getCategory().add(newCategory);
 	comp.setModDate(time);
-	return crud.save(comp);
+	return crud.save(comp);}
+	return null;
     }
 
     @Override
@@ -120,10 +128,13 @@ public class CompanyDaoImpl implements CompanyDao {
 	String time = CommonUtil.getCurrentTime();
 	CompanyEntity comp = getByGuid(guid);
 	List<String> cateList = comp.getCategory();
-	for (String cate : cateList) {
-	    if (cate.equalsIgnoreCase(categoryToRemove)) {
-		cateList.remove(categoryToRemove);
-	    }
+	
+	Iterator<String> it = cateList.iterator();
+	while(it.hasNext()){
+	    String cate=it.next();
+	   if( cate.equalsIgnoreCase(categoryToRemove)){
+	       it.remove();
+	   }
 	}
 	comp.setModDate(time);
 	return crud.save(comp);
@@ -134,9 +145,11 @@ public class CompanyDaoImpl implements CompanyDao {
     public CompanyEntity addArea(String guid, String newArea) {
 	String time = CommonUtil.getCurrentTime();
 	CompanyEntity comp = getByGuid(guid);
+	if(!comp.getArea().contains(newArea)){
 	comp.getArea().add(newArea);
 	comp.setModDate(time);
-	return crud.save(comp);
+	return crud.save(comp);}
+	return null;
     }
 
     @Override
@@ -144,10 +157,12 @@ public class CompanyDaoImpl implements CompanyDao {
 	String time = CommonUtil.getCurrentTime();
 	CompanyEntity comp = getByGuid(guid);
 	List<String> areaList = comp.getArea();
-	for (String area : areaList) {
-	    if (area.equalsIgnoreCase(areaToRemove)) {
-		areaList.remove(areaToRemove);
-	    }
+	Iterator<String> it = areaList.iterator();
+	while(it.hasNext()){
+	    String area=it.next();
+	   if( area.equalsIgnoreCase(areaToRemove)){
+	       it.remove();
+	   }
 	}
 	comp.setModDate(time);
 	return crud.save(comp);
