@@ -29,6 +29,10 @@ public interface CompanyDao {
 
 	CompanyEntity updateComapnyInfo(String guid, CompanyEntity newComp);
 
+	CompanyEntity removeArea(String guid, String areaToRemove);
+
+	CompanyEntity addArea(String guid, String newArea);
+
 
 
 }

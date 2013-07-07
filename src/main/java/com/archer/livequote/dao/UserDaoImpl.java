@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.archer.livequote.common.util.CommonUtil;
+import com.archer.livequote.db.domain.QuoteHistory;
 import com.archer.livequote.db.domain.UserEntity;
 
 @Repository
@@ -56,5 +57,17 @@ public class UserDaoImpl implements UserDao {
 	public UserEntity getUserByGuid(String guid) {
 		return crud.getByField("guid", guid, UserEntity.class);
 	}
-
+	
+	//quote history operation..
+	@Override
+	public boolean addQuotHistory(String guid,String quoteCategory){
+	    String time = CommonUtil.getCurrentTime();
+	    QuoteHistory qh=new QuoteHistory();
+	    qh.setCategory(quoteCategory);
+	    qh.setQuoteDate(time);
+	    UserEntity ue=getUserByGuid(guid);
+	    ue.getQuoteHistory().add(qh);
+	    return crud.save(ue)!=null;
+	}
+	
 }

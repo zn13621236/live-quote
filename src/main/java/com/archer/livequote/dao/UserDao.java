@@ -17,6 +17,9 @@ public interface UserDao {
 
 	UserEntity deleteUserByGuid(String guid);
 
+
+	boolean addQuotHistory(String guid, String quoteCategory);
+
 //	UserEntity updateCell(String guid, String cell);
 	
 }

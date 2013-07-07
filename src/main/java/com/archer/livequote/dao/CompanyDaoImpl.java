@@ -129,6 +129,30 @@ public class CompanyDaoImpl implements CompanyDao {
 	return crud.save(comp);
     }
 
+    //area operation...
+    @Override
+    public CompanyEntity addArea(String guid, String newArea) {
+	String time = CommonUtil.getCurrentTime();
+	CompanyEntity comp = getByGuid(guid);
+	comp.getArea().add(newArea);
+	comp.setModDate(time);
+	return crud.save(comp);
+    }
+
+    @Override
+    public CompanyEntity removeArea(String guid, String areaToRemove) {
+	String time = CommonUtil.getCurrentTime();
+	CompanyEntity comp = getByGuid(guid);
+	List<String> areaList = comp.getArea();
+	for (String area : areaList) {
+	    if (area.equalsIgnoreCase(areaToRemove)) {
+		areaList.remove(areaToRemove);
+	    }
+	}
+	comp.setModDate(time);
+	return crud.save(comp);
+    }
+    
     // @Override
     // public CompanyEntity addCategoryForCompany(String guid, String category)
     // {

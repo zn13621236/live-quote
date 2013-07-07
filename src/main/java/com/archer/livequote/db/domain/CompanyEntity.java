@@ -25,7 +25,7 @@ public class CompanyEntity {
 	private List<String> email;
 	@Field("account_type")
 	private String accountType;
-	@Field("active_date")
+	@Field("expire_date")
 	private String expireDate;
 	private String status;
 	@Field("add_date")
