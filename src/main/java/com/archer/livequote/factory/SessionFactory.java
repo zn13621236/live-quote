@@ -3,22 +3,30 @@ package com.archer.livequote.factory;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.archer.livequote.constant.Environment;
 
-
+@Component
 public class SessionFactory {
+    @Value(value = "${mail.username}")
+     String userName;
+
+    @Value(value = "${mail.password}")
+     String passWord;
+
+    public  Session getSession() {
+	Session session = Session.getDefaultInstance(Environment.init(),
+		new javax.mail.Authenticator() {
+		    protected PasswordAuthentication getPasswordAuthentication() {
+			return new PasswordAuthentication(userName, passWord);
+		    }
+		});
 	
-	public static Session getSession() {
-		Session session = Session.getDefaultInstance(Environment.init(),
-				new javax.mail.Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(Environment.UserName,
-								Environment.PassWord);
-					}
-				});
-		System.out.println("username : =="+Environment.UserName);
-		return session;
-	}
+	System.out.println("user name :"+userName);
+	System.out.println("password :=="+ passWord);
+	return session;
+    }
 
 }

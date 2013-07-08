@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.archer.livequote.constant.Environment;
 import com.archer.livequote.dao.CompanyDao;
 import com.archer.livequote.dto.EmailTemplate;
 import com.archer.livequote.factory.SessionFactory;
@@ -22,12 +21,16 @@ public class EmailServiceImpl implements EmailService{
 
 	@Autowired
 	CompanyDao cdao;
+	@Autowired
+	SessionFactory sessionFactory;
+	@Value("${mail.username}")
+	String userName;
 	
 	
 	@Async
 	@Override
 	public boolean sendEmail(EmailTemplate eTemplate) {
-
+         
 		try {
 			Message message = setMessage(eTemplate);
 			Transport.send(message);
@@ -41,9 +44,9 @@ public class EmailServiceImpl implements EmailService{
 	
 	@Override
 	public Message setMessage(EmailTemplate eTemplate) {
-		Message message = new MimeMessage(SessionFactory.getSession());
+		Message message = new MimeMessage(sessionFactory.getSession());
 		try {
-			message.setFrom(new InternetAddress(Environment.UserName));
+			message.setFrom(new InternetAddress(userName));
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(eTemplate.getToEmails()));
 			message.setSubject(eTemplate.getSubject());

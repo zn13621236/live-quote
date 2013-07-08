@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.springframework.core.io.ClassPathResource;
+
 
 public class Environment {
 
@@ -23,9 +25,14 @@ public class Environment {
 	static {
 		props = new Properties();
 		try {
-			props.load(new FileInputStream(
-					"src/main/resources/email.properties"));
-			props.load(new FileInputStream("src/main/resources/db.properties"));
+		    String inputFile1 = "email.properties";
+		        ClassPathResource inputSource = new ClassPathResource(inputFile1);
+		        String inputFileLocation = inputSource.getFile().getAbsolutePath();
+			props.load(new FileInputStream(inputFileLocation));
+			String inputFile2 = "db.properties";
+			inputSource = new ClassPathResource(inputFile2);
+		        inputFileLocation = inputSource.getFile().getAbsolutePath();
+			props.load(new FileInputStream(inputFileLocation));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,10 +40,6 @@ public class Environment {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-	}
-
-	public static Properties init() {
 		Environment.SmtpHost = props.getProperty("mail.smtp.host");
 		Environment.SmtpSocketFactoryClass = props
 				.getProperty("mail.smtp.socketFactory.class");
@@ -49,6 +52,10 @@ public class Environment {
 		Environment.MongoHost = props.getProperty("mongo.host");
 		//Environment.MongoPort = props.getProperty("mongo.port");
 		Environment.DBName = props.getProperty("mongo.db");
+	}
+
+	public static Properties init() {
+
 		return props;
 	}
 }
