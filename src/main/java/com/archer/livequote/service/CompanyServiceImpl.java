@@ -64,4 +64,17 @@ public class CompanyServiceImpl implements CompanyService {
 	 cdao.addCategory(companyGuid, categoryToAdd);	
     }
 
+    @Override
+    public void updateArea(String guid, String oldArea, String newArea) {
+	cdao.removeArea(guid, oldArea);
+	cdao.addArea(guid, newArea);
+    }
+
+    @Override
+    public void updateCategory(String guid, String oldCategory,
+	    String newCategory) {
+	cdao.removeCategory(guid, oldCategory);
+	cdao.addCategory(guid, newCategory);
+    }
+
 }

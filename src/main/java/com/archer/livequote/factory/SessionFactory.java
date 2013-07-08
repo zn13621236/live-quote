@@ -17,6 +17,7 @@ public class SessionFactory {
 								Environment.PassWord);
 					}
 				});
+		System.out.println("username : =="+Environment.UserName);
 		return session;
 	}
 

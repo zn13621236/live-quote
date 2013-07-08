@@ -149,12 +149,32 @@ public class CompanyController {
 	return manageAccount(companyGuid, model);
     }
     
+    
+    //update area
+    @RequestMapping(value = "/{companyGuid}/area/update", method = RequestMethod.GET)
+    public String updateArea(@PathVariable String companyGuid,
+	    @RequestParam("oldArea") String oldArea, Model model) {
+	CompanyEntity ce = cService.getCompanyById(companyGuid);
+	model.addAttribute("company", ce);
+	model.addAttribute("oldArea", oldArea);
+	return "areaUpdate";
+    }
+
+    @RequestMapping(value = "/{companyGuid}/area/update", method = RequestMethod.POST)
+    public String updateArea(@PathVariable String companyGuid,
+	    @RequestParam("newArea") String newArea,
+	    @RequestParam("oldArea") String oldArea, Model model) {
+	cService.updateArea(companyGuid, oldArea, newArea);
+	return manageAccount(companyGuid, model);
+    }
+    
+    
     // remove category
     @RequestMapping(value = "/{companyGuid}/category/remove", method = RequestMethod.GET)
     public String removeCategoryPage(@PathVariable String companyGuid,
 	    @RequestParam String oldCategory, Model model) {
 	model.addAttribute("oldCategory", oldCategory);
-	return "areaRemove";
+	return "categoryRemove";
     }
 
     @RequestMapping(value = "/{companyGuid}/category/remove", method = RequestMethod.POST)
@@ -176,8 +196,24 @@ public class CompanyController {
 	cService.addCategory(companyGuid, newCategory);
 	return manageAccount(companyGuid, model);
     }
-    
-    
+    //update category
+    @RequestMapping(value = "/{companyGuid}/category/update", method = RequestMethod.GET)
+    public String updateCategory(@PathVariable String companyGuid,
+	    @RequestParam("oldCategory") String oldCategory, Model model) {
+	CompanyEntity ce = cService.getCompanyById(companyGuid);
+	model.addAttribute("company", ce);
+	model.addAttribute("oldCategory", oldCategory);
+	return "categoryUpdate";
+    }
+
+    @RequestMapping(value = "/{companyGuid}/category/update", method = RequestMethod.POST)
+    public String updateCategory(@PathVariable String companyGuid,
+	    @RequestParam("newCategory") String newCategory,
+	    @RequestParam("oldCategory") String oldCategory, Model model) {
+	cService.updateCategory(companyGuid, oldCategory, newCategory);
+	return manageAccount(companyGuid, model);
+    }
+
     
     // edit company regular fields....
 

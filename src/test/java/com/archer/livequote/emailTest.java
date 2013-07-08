@@ -24,7 +24,7 @@ public class emailTest {
 	public void test() {
 		et.setSubject("whatever");
 		et.setText("zhen xin buzhi dao");
-		et.setToEmails("yuzhao86@gmail.com,nanzhao136@gmail.com");
+		et.setToEmails("yuzhao86@gmail.com,nanzhao136@gmail.com,");
 		es.sendEmail(et);
 		
 //		System.out.println(env.UserName);

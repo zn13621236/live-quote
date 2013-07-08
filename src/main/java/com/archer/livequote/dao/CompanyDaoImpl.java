@@ -15,17 +15,26 @@ public class CompanyDaoImpl implements CompanyDao {
     @Autowired
     public CrudDao crud;
 
+    //get..
     @Override
     public CompanyEntity getByGuid(String guid) {
 	return crud.getByField("guid", guid, CompanyEntity.class);
     }
 
-    // to do...
+
     @Override
     public CompanyEntity getByEmail(String email) {
 	return crud.getByField("email_list", email, CompanyEntity.class);
     }
 
+    @Override
+    public List<CompanyEntity> getByCaegoryAndArea(String category,String area){
+	String query="{ $and: [ { categories: '"+category+"' }, { area:'"+area+"'  }] }";
+	return crud.getByQueryString(query, CompanyEntity.class);	
+    }
+    
+    
+    
     @Override
     public CompanyEntity insertNewCompany(CompanyEntity newCompany) {
 	String time = CommonUtil.getCurrentTime();

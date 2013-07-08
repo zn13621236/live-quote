@@ -8,6 +8,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +27,7 @@ public class EmailServiceImpl implements EmailService{
 	@Async
 	@Override
 	public boolean sendEmail(EmailTemplate eTemplate) {
-		
-		
-		
+
 		try {
 			Message message = setMessage(eTemplate);
 			Transport.send(message);
@@ -45,7 +44,6 @@ public class EmailServiceImpl implements EmailService{
 		Message message = new MimeMessage(SessionFactory.getSession());
 		try {
 			message.setFrom(new InternetAddress(Environment.UserName));
-
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(eTemplate.getToEmails()));
 			message.setSubject(eTemplate.getSubject());

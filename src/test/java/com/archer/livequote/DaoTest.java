@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.archer.livequote.common.util.CommonUtil;
 import com.archer.livequote.constant.Environment;
+import com.archer.livequote.dao.AreaSettingDao;
 import com.archer.livequote.dao.CompanyDao;
+import com.archer.livequote.db.domain.AreaSetting;
 import com.archer.livequote.db.domain.CompanyEntity;
+import com.archer.livequote.db.domain.ZipCodeRange;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/root-context.xml" })
@@ -19,6 +21,8 @@ public class DaoTest {
 
 	@Autowired
 	CompanyDao cDao;
+	@Autowired
+	AreaSettingDao adao;
 
 	@Test
 	public void insertTest() {
@@ -44,5 +48,14 @@ public class DaoTest {
 		 cDao.updateCompanyEmail(c.getGuid(), "abc@gmail.com", "abc1@gmail.com");
 	}
 	
-
+	@Test
+	public void insertAreaTest() {
+	AreaSetting as= new AreaSetting();
+	ZipCodeRange zcr= new ZipCodeRange();
+	zcr.setMinZip(98000);
+	zcr.setMaxZip(98500);
+	as.setAreaName("seattle");
+	as.setZipCodeRange(zcr);
+	adao.createAreaRecord(as);
+	}
 }

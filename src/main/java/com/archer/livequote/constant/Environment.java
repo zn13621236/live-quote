@@ -33,6 +33,10 @@ public class Environment {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	public static Properties init() {
 		Environment.SmtpHost = props.getProperty("mail.smtp.host");
 		Environment.SmtpSocketFactoryClass = props
 				.getProperty("mail.smtp.socketFactory.class");
@@ -45,9 +49,6 @@ public class Environment {
 		Environment.MongoHost = props.getProperty("mongo.host");
 		//Environment.MongoPort = props.getProperty("mongo.port");
 		Environment.DBName = props.getProperty("mongo.db");
-	}
-
-	public static Properties init() {
 		return props;
 	}
 }

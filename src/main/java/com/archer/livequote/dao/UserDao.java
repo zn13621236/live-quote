@@ -20,6 +20,9 @@ public interface UserDao {
 
 	boolean addQuotHistory(String guid, String quoteCategory);
 
+
+	UserEntity getUserByEmail(String email);
+
 //	UserEntity updateCell(String guid, String cell);
 	
 }

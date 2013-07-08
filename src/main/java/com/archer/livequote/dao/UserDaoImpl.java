@@ -16,11 +16,13 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public UserEntity createUser(UserEntity ue) {
 		String time = CommonUtil.getCurrentTime();
+		if(getUserByEmail(ue.getEmail())!=null){
 		ue.setGuid(CommonUtil.generateUid());
 		ue.setAddDate(time);
 		ue.setUsedCount(1);
 		ue.setModDate(time);
-		return crud.save(ue);
+		return crud.save(ue);}
+		return null;
 	}
 
 	@Override
@@ -56,6 +58,11 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public UserEntity getUserByGuid(String guid) {
 		return crud.getByField("guid", guid, UserEntity.class);
+	}
+	
+	@Override
+	public UserEntity getUserByEmail(String email) {
+		return crud.getByField("email", email, UserEntity.class);
 	}
 	
 	//quote history operation..

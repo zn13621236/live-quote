@@ -1,5 +1,7 @@
 package com.archer.livequote.dao;
 
+import java.util.List;
+
 import com.archer.livequote.db.domain.CompanyEntity;
 
 public interface CompanyDao {
@@ -33,6 +35,7 @@ public interface CompanyDao {
 
 	CompanyEntity addArea(String guid, String newArea);
 
+	List<CompanyEntity> getByCaegoryAndArea(String category, String area);
 
 
 }

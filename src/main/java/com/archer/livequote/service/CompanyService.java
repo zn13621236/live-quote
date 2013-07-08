@@ -18,9 +18,14 @@ public interface CompanyService {
 
     void addArea(String companyGuid, String areaToAdd);
 
+    void updateArea(String guid, String oldArea, String newArea);
+
     boolean removeCategory(String guid, String categoryToRemove);
 
     void addCategory(String companyGuid, String categoryToAdd);
+
+    void updateCategory(String guid, String oldCategory,
+	    String newCategory);
 
     boolean updateCompany(String guid, CompanyEntity comp);
 
