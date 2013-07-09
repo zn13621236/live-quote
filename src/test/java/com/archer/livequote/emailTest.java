@@ -11,7 +11,7 @@ import com.archer.livequote.dto.EmailTemplate;
 import com.archer.livequote.service.EmailService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/root-context.xml" })
+@ContextConfiguration(locations = {"/ApplicationContext.xml"})
 public class emailTest {
 
 	@Autowired

@@ -1,147 +1,151 @@
 package com.archer.livequote.db.domain;
 
-import java.util.List;
-
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
+
 @Document(collection = "company")
 public class CompanyEntity {
 
-	@Id
-	private ObjectId id;
-	private String guid;
-	@Field("company_name")
-	private String companyName;
-	@Field("user_name")
-	private String userName;
-	@Field("password")
-	private String passWord;
-	@Field("categories")
-	private List<String> category;
-	@Field("email_list")
-	private List<String> email;
-	@Field("account_type")
-	private String accountType;
-	@Field("expire_date")
-	private String expireDate;
-	private String status;
-	@Field("add_date")
-	private String addDate;
-	@Field("mod_date")
-	private String modDate;
-	@Field("phone_number")
-	private String phone;
-	private List<String> area;
+    @Id
+    private ObjectId id;
+    private String guid;
+    @Field("company_name")
+    private String companyName;
+    @Field("user_name")
+    private String userName;
+    @Field("password")
+    private String password;
+    @Field("categories")
+    private List<String> category;
+    @Field("email_list")
+    private List<String> email;
+    @Field("account_type")
+    private String accountType;
+    @Field("expire_date")
+    private String expireDate;
+    private String status;
+    @Field("add_date")
+    private String addDate;
+    @Field("mod_date")
+    private String modDate;
+    @Field("phone_number")
+    private String phone;
+    private List<String> area;
 
-	public ObjectId getId() {
-		return id;
-	}
+    public ObjectId getId() {
+        return id;
+    }
 
-	public String getUserName() {
-		return userName;
-	}
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public List<String> getCategory() {
-		return category;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setCategory(List<String> category) {
-		this.category = category;
-	}
+    public List<String> getCategory() {
+        return category;
+    }
 
-	public String getExpireDate() {
-		return expireDate;
-	}
+    public void setCategory(List<String> category) {
+        this.category = category;
+    }
 
-	public void setExpireDate(String expireDate) {
-		this.expireDate = expireDate;
-	}
+    public String getExpireDate() {
+        return expireDate;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public List<String> getArea() {
-		return area;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setArea(List<String> area) {
-		this.area = area;
-	}
+    public List<String> getArea() {
+        return area;
+    }
 
-	public String getPassWord() {
-		return passWord;
-	}
+    public void setArea(List<String> area) {
+        this.area = area;
+    }
 
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getGuid() {
-		return guid;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setGuid(String guid) {
-		this.guid = guid;
-	}
+    public String getGuid() {
+        return guid;
+    }
 
-	public String getCompanyName() {
-		return companyName;
-	}
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
+    public String getCompanyName() {
+        return companyName;
+    }
 
-	public List<String> getEmail() {
-		return email;
-	}
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
-	public void setEmail(List<String> email) {
-		this.email = email;
-	}
+    public List<String> getEmail() {
+        return email;
+    }
 
-	public String getAccountType() {
-		return accountType;
-	}
+    public void setEmail(List<String> email) {
+        this.email = email;
+    }
 
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
+    public String getAccountType() {
+        return accountType;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public String getAddDate() {
-		return addDate;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setAddDate(String addDate) {
-		this.addDate = addDate;
-	}
+    public String getAddDate() {
+        return addDate;
+    }
 
-	public String getModDate() {
-		return modDate;
-	}
+    public void setAddDate(String addDate) {
+        this.addDate = addDate;
+    }
 
-	public void setModDate(String modDate) {
-		this.modDate = modDate;
-	}
+    public String getModDate() {
+        return modDate;
+    }
+
+    public void setModDate(String modDate) {
+        this.modDate = modDate;
+    }
 
 }

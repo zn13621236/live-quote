@@ -25,8 +25,11 @@ public interface CompanyService {
     void addCategory(String companyGuid, String categoryToAdd);
 
     void updateCategory(String guid, String oldCategory,
-	    String newCategory);
+                        String newCategory);
 
     boolean updateCompany(String guid, CompanyEntity comp);
 
+    CompanyEntity getByUsernameAndPassword(String username, String password);
+
+    void insertCompany(CompanyEntity company);
 }

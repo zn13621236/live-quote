@@ -18,7 +18,7 @@
 		</tr>
 		<tr>
 			<td>pass word</td>
-			<td>${company.passWord}</td>
+			<td>${company.password}</td>
 		</tr>
 		<tr>
 			<td>Account type</td>
