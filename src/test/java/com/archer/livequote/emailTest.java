@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.archer.livequote.dto.EmailTemplate;
-import com.archer.livequote.service.EmailService;
+import com.archer.livequote.to_be_expired.EmailService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/ApplicationContext.xml"})

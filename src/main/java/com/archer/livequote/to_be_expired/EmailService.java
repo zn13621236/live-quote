@@ -1,4 +1,4 @@
-package com.archer.livequote.service;
+package com.archer.livequote.to_be_expired;
 
 import javax.mail.Message;
 
