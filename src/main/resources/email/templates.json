@@ -3,7 +3,7 @@
         "guid": "1",
         "template_file": "welcome",
         "description": "",
-        "from": "life.quote@gmail.com",
+        "from": "live.quote@gmail.com",
         "subject": "Welcome to register life quote",
         "html": true
     },
@@ -12,7 +12,7 @@
         "guid": "2",
         "template_file": "newquote",
         "description": "quote",
-        "from": "life.quote@gmail.com",
+        "from": "live.quote@gmail.com",
         "subject": "New quote requested!",
         "html": true
     }

@@ -225,7 +225,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>life-quote</finalName>
+        <finalName>live-quote</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>

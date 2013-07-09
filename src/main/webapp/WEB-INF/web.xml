@@ -12,7 +12,7 @@
     </context-param>
     <context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>life-quote.root</param-value>
+        <param-value>live-quote.root</param-value>
     </context-param>
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>

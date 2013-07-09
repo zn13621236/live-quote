@@ -17,7 +17,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
     private transient PasswordEncoder passwordEncoder;
-    private final String SALT = "life-quote";
+    private final String SALT = "live-quote";
 
     public CompanyEntity findByUserName(String username) {
         return vendorAccountRepository.findByUserName(username);
