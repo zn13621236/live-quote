@@ -4,7 +4,8 @@
         "template_file": "welcome",
         "description": "",
         "from": "life.quote@gmail.com",
-        "subject": "Welcome to register life quote"
+        "subject": "Welcome to register life quote",
+        "html": true
     },
 
     {
@@ -12,6 +13,7 @@
         "template_file": "newquote",
         "description": "quote",
         "from": "life.quote@gmail.com",
-        "subject": "New quote requested!"
+        "subject": "New quote requested!",
+        "html": true
     }
 ]

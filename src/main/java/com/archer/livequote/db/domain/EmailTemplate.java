@@ -1,4 +1,4 @@
-package com.archer.livequote.email.domain;
+package com.archer.livequote.db.domain;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author Aaron Yang
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Template implements Serializable, Cloneable {
+public class EmailTemplate implements Serializable, Cloneable {
     @JsonProperty
     private String id;
 

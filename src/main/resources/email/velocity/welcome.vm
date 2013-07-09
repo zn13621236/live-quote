@@ -1,4 +1,4 @@
-#include( "templates/velocity/common/header.vm")
+#include( "email/velocity/common/header.vm")
 
 <IMG SRC="http://gco-tr.com:80/track?eas=1&mailingid=218048&messageid=87412&databaseid=1342657326&type=open&serial=16815648&emailid=jinglong.yang@gmail.com&userid=1_6&targetid=&fl=&extra=MultivariateId=&&&" WIDTH="1" HEIGHT="1" STYLE="border-width:0; border-style:hidden;" ALT=""/>
 <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
@@ -52,4 +52,4 @@ are registered trademarks of RealNetworks, Inc.</span><br />
   </tr>
 </table>
 
-#include( "templates/velocity/common/footer.vm")
+#include( "email/velocity/common/footer.vm")

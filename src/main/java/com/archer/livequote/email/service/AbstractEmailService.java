@@ -3,11 +3,12 @@
  */
 package com.archer.livequote.email.service;
 
-import com.archer.livequote.email.domain.Template;
+import com.archer.livequote.db.domain.EmailTemplate;
 import com.archer.livequote.email.template.TemplateManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.Assert;
 
 import java.util.Locale;
@@ -22,27 +23,32 @@ public abstract class AbstractEmailService implements EmailService {
     private TemplateEngine templateEngine;
 
     @Autowired
+    @Qualifier("jsonTemplateManager")
     private TemplateManager templateManager;
+
+    public void sendEmail(String template, String[] to) {
+        sendEmail(templateManager.getTemplatesById(template), to, null, null);
+    }
 
     public void sendEmail(String template, String[] to, Map<String, Object> parameters) {
         sendEmail(templateManager.getTemplatesById(template), to, parameters, null);
     }
 
-    @Override
-    public void sendEmail(String template, String[] to, Map<String, Object> parameters, Locale locale) {
-        Assert.notNull(template, "Email template id must be not null.");
-        logger.info("The email template is {}.", template);
-        sendEmail(templateManager.getTemplatesById(template), to, parameters, locale);
-    }
+//    @Override
+//    public void sendEmail(String template, String[] to, Map<String, Object> parameters, Locale locale) {
+//        Assert.notNull(template, "Email emailTemplate id must be not null.");
+//        logger.info("The email emailTemplate is {}.", template);
+//        sendEmail(templateManager.getTemplatesById(template), to, parameters, locale);
+//    }
 
-    protected void sendEmail(Template template, String[] to, Map<String, Object> parameters, Locale locale) {
-        Assert.notNull(template, "Email template must be not null.");
-        String content = templateEngine.processTemplateIntoString(template, parameters, locale);
+    protected void sendEmail(EmailTemplate emailTemplate, String[] to, Map<String, Object> parameters, Locale locale) {
+        Assert.notNull(emailTemplate, "Email emailTemplate must be not null.");
+        String content = templateEngine.processTemplateIntoString(emailTemplate, parameters, locale);
         if (logger.isDebugEnabled()) {
             logger.debug(content);
         }
 
-        doSend(template.getFrom(), template.getSubject(), content, to, template.isHtml());
+        doSend(emailTemplate.getFrom(), emailTemplate.getSubject(), content, to, emailTemplate.isHtml());
     }
 
     @Override

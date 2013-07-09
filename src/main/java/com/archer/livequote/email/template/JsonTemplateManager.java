@@ -3,7 +3,7 @@
  */
 package com.archer.livequote.email.template;
 
-import com.archer.livequote.email.domain.Template;
+import com.archer.livequote.db.domain.EmailTemplate;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,8 +22,8 @@ public class JsonTemplateManager extends AbstractTemplateManager {
     private Resource resource;
 
     @Override
-    protected List<Template> loadTemplate() throws IOException {
-        return new ObjectMapper().readValue(resource.getInputStream(), new TypeReference<List<Template>>() {
+    protected List<EmailTemplate> loadTemplate() throws IOException {
+        return new ObjectMapper().readValue(resource.getInputStream(), new TypeReference<List<EmailTemplate>>() {
         });
     }
 

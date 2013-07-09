@@ -1,6 +1,6 @@
 package com.archer.livequote.email.template;
 
-import com.archer.livequote.email.domain.Template;
+import com.archer.livequote.db.domain.EmailTemplate;
 
 import java.util.Collection;
 
@@ -8,10 +8,10 @@ import java.util.Collection;
  * @author Aaron Yang
  */
 public interface TemplateManager {
-    Template getTemplatesById(String id);
+    EmailTemplate getTemplatesById(String id);
 
     /**
      * @return
      */
-    Collection<Template> getTemplates();
+    Collection<EmailTemplate> getEmailTemplates();
 }

@@ -3,7 +3,7 @@
  */
 package com.archer.livequote.email.service;
 
-import com.archer.livequote.email.domain.Template;
+import com.archer.livequote.db.domain.EmailTemplate;
 
 import java.util.Locale;
 import java.util.Map;
@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public interface TemplateEngine {
     /**
-     * @param emailTemplate
+     * @param emailEmailTemplate
      * @param model
      * @return
      */
-    public String processTemplateIntoString(Template emailTemplate, Map<String, Object> model, Locale locale);
+    public String processTemplateIntoString(EmailTemplate emailEmailTemplate, Map<String, Object> model, Locale locale);
 }

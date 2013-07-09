@@ -1,6 +1,6 @@
 package com.archer.livequote.email.template;
 
-import com.archer.livequote.email.domain.Template;
+import com.archer.livequote.db.domain.EmailTemplate;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.CollectionUtils;
 
@@ -14,27 +14,27 @@ import java.util.Map;
  * @author: ayang
  */
 public abstract class AbstractTemplateManager implements TemplateManager, InitializingBean {
-    private final Map<String, Template> templateMap = new HashMap<String, Template>();
-    private List<Template> templates;
+    private final Map<String, EmailTemplate> templateMap = new HashMap<String, EmailTemplate>();
+    private List<EmailTemplate> emailTemplates;
 
     @Override
-    public Template getTemplatesById(String id) {
+    public EmailTemplate getTemplatesById(String id) {
         return templateMap.get(id);
     }
 
     @Override
-    public Collection<Template> getTemplates() {
-        return templates;
+    public Collection<EmailTemplate> getEmailTemplates() {
+        return emailTemplates;
     }
 
-    protected abstract List<Template> loadTemplate() throws IOException;
+    protected abstract List<EmailTemplate> loadTemplate() throws IOException;
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        templates = loadTemplate();
-        if (!CollectionUtils.isEmpty(templates)) {
-            for (Template template : templates) {
-                templateMap.put(template.getId(), template);
+        emailTemplates = loadTemplate();
+        if (!CollectionUtils.isEmpty(emailTemplates)) {
+            for (EmailTemplate emailTemplate : emailTemplates) {
+                templateMap.put(emailTemplate.getId(), emailTemplate);
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.archer.livequote.dto;
+package com.archer.livequote.to_be_expired;
 
 import org.springframework.stereotype.Component;
 

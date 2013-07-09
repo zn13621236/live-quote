@@ -1,33 +1,27 @@
 package com.archer.livequote;
 
+import com.archer.livequote.email.service.EmailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.archer.livequote.dto.EmailTemplate;
-import com.archer.livequote.to_be_expired.EmailService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/ApplicationContext.xml"})
-public class emailTest {
+public class EmailTest {
+    @Autowired
+    private EmailService es;
 
-	@Autowired
-	@Qualifier("emailService")
-	EmailService es;
-	@Autowired
-	EmailTemplate et;
-	
-	@Test
-	public void test() {
-		et.setSubject("whatever");
-		et.setText("zhen xin buzhi dao");
-		et.setToEmails("yuzhao86@gmail.com,nanzhao136@gmail.com,");
-		es.sendEmail(et);
-		
-//		System.out.println(env.UserName);
-	}
 
+    @Test
+    public void testWelcome() {
+        es.sendEmail("1", new String[]{"jinglong.yang@gmail.com"});
+    }
+
+    @Test
+    public void testNewQuote() {
+        es.sendEmail("2", new String[]{"yuzhao86@gmail.com", "nanzhao136@gmail.com"});
+    }
 }

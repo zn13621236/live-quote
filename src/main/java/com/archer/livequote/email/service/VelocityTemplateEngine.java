@@ -3,7 +3,7 @@
  */
 package com.archer.livequote.email.service;
 
-import com.archer.livequote.email.domain.Template;
+import com.archer.livequote.db.domain.EmailTemplate;
 import org.apache.velocity.app.VelocityEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +24,9 @@ public class VelocityTemplateEngine implements TemplateEngine {
     private VelocityEngine velocityEngine;
 
     @Override
-    public String processTemplateIntoString(Template emailTemplate, Map<String, Object> model, Locale locale) {
+    public String processTemplateIntoString(EmailTemplate emailEmailTemplate, Map<String, Object> model, Locale locale) {
         StringBuilder templateFileName = new StringBuilder("email/velocity/");
-        templateFileName.append(emailTemplate.getTemplateFile());
+        templateFileName.append(emailEmailTemplate.getTemplateFile());
         if (locale != null) {
             templateFileName.append("_").append(locale.toString());
         }
