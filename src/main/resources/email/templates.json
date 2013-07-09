@@ -1,0 +1,14 @@
+[
+    {
+        "id": "1",
+        "template_file": "welcome",
+        "description": "",
+        "from": "life.quote@gmail.com",
+        "subject": "Welcome to register life quote"
+    },
+
+    {
+        "id": "2",
+        "description": "quote"
+    }
+]
