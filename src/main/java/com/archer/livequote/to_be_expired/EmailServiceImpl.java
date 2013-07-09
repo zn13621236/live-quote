@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.archer.livequote.dao.CompanyDao;
-import com.archer.livequote.factory.SessionFactory;
 
 @Service("emailService")
 public class EmailServiceImpl implements EmailService{

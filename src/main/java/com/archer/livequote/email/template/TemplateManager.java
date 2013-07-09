@@ -8,7 +8,7 @@ import java.util.Collection;
  * @author Aaron Yang
  */
 public interface TemplateManager {
-    EmailTemplate getTemplatesById(String id);
+    EmailTemplate getTemplatesByGuid(String guid);
 
     /**
      * @return

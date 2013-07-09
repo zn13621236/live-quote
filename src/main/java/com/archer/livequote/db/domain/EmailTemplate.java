@@ -2,8 +2,13 @@ package com.archer.livequote.db.domain;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.bson.types.ObjectId;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
 
@@ -11,14 +16,19 @@ import java.io.Serializable;
  * @author Aaron Yang
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Document(collection = "email_templates")
 public class EmailTemplate implements Serializable, Cloneable {
-    @JsonProperty
-    private String id;
+    @Id
+    @JsonIgnore
+    private ObjectId id;
 
-    @JsonProperty
+    @JsonProperty("id")
+    private String guid;
+
     private String description;
 
     @JsonProperty("template_file")
+    @Field("template_file")
     private String templateFile;
 
     private String from;
@@ -27,14 +37,6 @@ public class EmailTemplate implements Serializable, Cloneable {
 
     private boolean html;
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;
@@ -75,6 +77,22 @@ public class EmailTemplate implements Serializable, Cloneable {
 
     public void setHtml(boolean html) {
         this.html = html;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
     }
 
     @Override

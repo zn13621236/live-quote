@@ -27,7 +27,7 @@ public class LoginController {
         return "login-error";
     }
 
-    @RequestMapping(value = "/vendor/{companyGuid}/emailManagement", method = RequestMethod.GET)
+    @RequestMapping(value = "/secure/{companyGuid}/emailManagement", method = RequestMethod.GET)
     public String manageEmail(@PathVariable String companyGuid, Model model) {
         CompanyEntity ce = cdao.getByGuid(companyGuid);
         model.addAttribute("company", ce);

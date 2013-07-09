@@ -1,9 +1,9 @@
 package com.archer.livequote.dao;
 
+import com.archer.livequote.util.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.archer.livequote.common.util.CommonUtil;
 import com.archer.livequote.db.domain.QuoteHistory;
 import com.archer.livequote.db.domain.UserEntity;
 
@@ -15,9 +15,9 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public UserEntity createUser(UserEntity ue) {
-		String time = CommonUtil.getCurrentTime();
+		String time = CommonUtils.getCurrentTime();
 		if(getUserByEmail(ue.getEmail())!=null){
-		ue.setGuid(CommonUtil.generateUid());
+		ue.setGuid(CommonUtils.generateUid());
 		ue.setAddDate(time);
 		ue.setUsedCount(1);
 		ue.setModDate(time);
@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
 
 //	@Override
 //	public UserEntity updateCell(String guid, String cell) {
-//		String time = CommonUtil.getCurrentTime();
+//		String time = CommonUtils.getCurrentTime();
 //		UserEntity ue = getUserByGuid(guid);
 //		ue.setCell(cell);
 //		return crud.save(ue);
@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
 
 //	@Override
 //	public UserEntity updateUserEmail(String guid, String newEmail) {
-//		String time = CommonUtil.getCurrentTime();
+//		String time = CommonUtils.getCurrentTime();
 //		UserEntity ue = getUserByGuid(guid);
 //		ue.setEmail(newEmail);
 //		return crud.save(ue);
@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean increaseUsedNumber(String guid) {
-		String time = CommonUtil.getCurrentTime();
+		String time = CommonUtils.getCurrentTime();
 		UserEntity ue = getUserByGuid(guid);
 		ue.setUsedCount(ue.getUsedCount() + 1);
 		ue.setModDate(time);
@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
 	//quote history operation..
 	@Override
 	public boolean addQuotHistory(String guid,String quoteCategory){
-	    String time = CommonUtil.getCurrentTime();
+	    String time = CommonUtils.getCurrentTime();
 	    QuoteHistory qh=new QuoteHistory();
 	    qh.setCategory(quoteCategory);
 	    qh.setQuoteDate(time);

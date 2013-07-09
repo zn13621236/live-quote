@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.archer.livequote.util.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.archer.livequote.common.util.CommonUtil;
 import com.archer.livequote.dao.AreaSettingDao;
 import com.archer.livequote.dao.CompanyDao;
 import com.archer.livequote.dao.UserDao;
@@ -63,7 +63,7 @@ public class QuoteServiceImpl implements QuoteService {
 		}
 		QuoteHistory qh = new QuoteHistory();
 		qh.setCategory(qr.getCategory());
-		qh.setQuoteDate(CommonUtil.getCurrentTime());
+		qh.setQuoteDate(CommonUtils.getCurrentTime());
 		if (ue.getQuoteHistory() == null) {
 			ue.setQuoteHistory(Arrays.asList(qh));
 		} else {
@@ -78,7 +78,7 @@ public class QuoteServiceImpl implements QuoteService {
 		// if no prefer company, send to all qualified company
 		if (qr.getPerferedCompany() == null) {
 			cList = cdao.getByCaegoryAndArea(qr.getCategory(),
-					adao.getAreaByZip(qr.getUe().getZip()));
+                    adao.getAreaByZip(qr.getUe().getZip()));
 		} else {
 			cList = qr.getPerferedCompany();
 		}

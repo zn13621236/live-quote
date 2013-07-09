@@ -11,7 +11,7 @@
                     password-parameter="password"/>
         <logout/>
         <!-- Security zones -->
-        <intercept-url pattern="/vendor/**" access="hasRole('ROLE_VENDOR')"/>
+        <intercept-url pattern="/secure/**" access="hasRole('ROLE_VENDOR')"/>
         <intercept-url pattern="/**" access="permitAll"/>
 
     </http>

@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "guid": "1",
         "template_file": "welcome",
         "description": "",
         "from": "life.quote@gmail.com",
@@ -9,7 +9,7 @@
     },
 
     {
-        "id": "2",
+        "guid": "2",
         "template_file": "newquote",
         "description": "quote",
         "from": "life.quote@gmail.com",

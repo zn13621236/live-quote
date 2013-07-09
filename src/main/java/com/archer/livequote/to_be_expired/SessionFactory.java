@@ -1,4 +1,4 @@
-package com.archer.livequote.factory;
+package com.archer.livequote.to_be_expired;
 
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -6,7 +6,7 @@ import javax.mail.Session;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.archer.livequote.constant.Environment;
+import com.archer.livequote.to_be_expired.Environment;
 
 @Component
 public class SessionFactory {

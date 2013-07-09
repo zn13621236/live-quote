@@ -12,7 +12,7 @@ package com.archer.livequote;
 //import org.codehaus.jackson.map.JsonMappingException;
 //import org.codehaus.jackson.map.ObjectMapper;
 //
-//import com.archer.mailman.common.util.CommonUtil;
+//import com.archer.mailman.common.util.CommonUtils;
 //import com.archer.mailman.db.domain.UserEntity;
 //import com.mongodb.BasicDBObject;
 //import com.mongodb.DB;
@@ -44,7 +44,7 @@ package com.archer.livequote;
 //			JsonMappingException, IOException {
 //		UserEntity ue = new UserEntity();
 //		ue.setEmail("whatever@gmail.com");
-//		ue.setGuid(CommonUtil.generateUid());
+//		ue.setGuid(CommonUtils.generateUid());
 //		String json = mapper.writeValueAsString(ue);
 //		DBObject dbObject = (DBObject) JSON.parse(json);
 //		collection.insert(dbObject);
@@ -55,7 +55,7 @@ package com.archer.livequote;
 //			JsonMappingException, IOException {
 //		UserEntity ue = new UserEntity();
 //		ue.setEmail("whatever123123@gmail.com");
-//		ue.setGuid(CommonUtil.generateUid());
+//		ue.setGuid(CommonUtils.generateUid());
 //
 //		JacksonDBCollection<UserEntity, String> coll = JacksonDBCollection
 //				.wrap(collection, UserEntity.class, String.class);

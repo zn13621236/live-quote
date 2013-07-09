@@ -14,12 +14,12 @@ import java.util.Map;
  * @author: ayang
  */
 public abstract class AbstractTemplateManager implements TemplateManager, InitializingBean {
-    private final Map<String, EmailTemplate> templateMap = new HashMap<String, EmailTemplate>();
+    private final Map<String, EmailTemplate> templateMap = new HashMap<>();
     private List<EmailTemplate> emailTemplates;
 
     @Override
-    public EmailTemplate getTemplatesById(String id) {
-        return templateMap.get(id);
+    public EmailTemplate getTemplatesByGuid(String guid) {
+        return templateMap.get(guid);
     }
 
     @Override
@@ -34,7 +34,7 @@ public abstract class AbstractTemplateManager implements TemplateManager, Initia
         emailTemplates = loadTemplate();
         if (!CollectionUtils.isEmpty(emailTemplates)) {
             for (EmailTemplate emailTemplate : emailTemplates) {
-                templateMap.put(emailTemplate.getId(), emailTemplate);
+                templateMap.put(emailTemplate.getGuid(), emailTemplate);
             }
         }
     }

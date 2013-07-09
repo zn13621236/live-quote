@@ -27,18 +27,18 @@ public abstract class AbstractEmailService implements EmailService {
     private TemplateManager templateManager;
 
     public void sendEmail(String template, String[] to) {
-        sendEmail(templateManager.getTemplatesById(template), to, null, null);
+        sendEmail(templateManager.getTemplatesByGuid(template), to, null, null);
     }
 
     public void sendEmail(String template, String[] to, Map<String, Object> parameters) {
-        sendEmail(templateManager.getTemplatesById(template), to, parameters, null);
+        sendEmail(templateManager.getTemplatesByGuid(template), to, parameters, null);
     }
 
 //    @Override
 //    public void sendEmail(String template, String[] to, Map<String, Object> parameters, Locale locale) {
 //        Assert.notNull(template, "Email emailTemplate id must be not null.");
 //        logger.info("The email emailTemplate is {}.", template);
-//        sendEmail(templateManager.getTemplatesById(template), to, parameters, locale);
+//        sendEmail(templateManager.getTemplatesByGuid(template), to, parameters, locale);
 //    }
 
     protected void sendEmail(EmailTemplate emailTemplate, String[] to, Map<String, Object> parameters, Locale locale) {

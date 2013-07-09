@@ -1,11 +1,11 @@
-package com.archer.livequote.common.util;
+package com.archer.livequote.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
-public class CommonUtil {
+public class CommonUtils {
 
 	private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	

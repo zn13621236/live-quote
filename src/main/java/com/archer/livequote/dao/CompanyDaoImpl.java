@@ -1,6 +1,6 @@
 package com.archer.livequote.dao;
 
-import com.archer.livequote.common.util.CommonUtil;
+import com.archer.livequote.util.CommonUtils;
 import com.archer.livequote.db.domain.CompanyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,8 +35,8 @@ public class CompanyDaoImpl implements CompanyDao {
 
     @Override
     public CompanyEntity insertNewCompany(CompanyEntity newCompany) {
-        String time = CommonUtil.getCurrentTime();
-        newCompany.setGuid(CommonUtil.generateUid());
+        String time = CommonUtils.getCurrentTime();
+        newCompany.setGuid(CommonUtils.generateUid());
         newCompany.setAddDate(time);
         newCompany.setModDate(time);
         return crud.save(newCompany);
@@ -44,7 +44,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
     // @Override
     // public CompanyEntity updateCompanyName(String guid, String newName) {
-    // String time = CommonUtil.getCurrentTime();
+    // String time = CommonUtils.getCurrentTime();
     // CompanyEntity comp = getByGuid(guid);
     // comp.setCompanyName(newName);
     // comp.setModDate(time);
@@ -53,7 +53,7 @@ public class CompanyDaoImpl implements CompanyDao {
     // update all non-list field for company entity..
     @Override
     public CompanyEntity updateComapnyInfo(String guid, CompanyEntity newComp) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         if (newComp.getAccountType() != null)
             comp.setAccountType(newComp.getAccountType());
@@ -77,7 +77,7 @@ public class CompanyDaoImpl implements CompanyDao {
     @Override
     public CompanyEntity updateCompanyEmail(String guid, String oldEmail,
                                             String newEmail) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         List<String> emails = comp.getEmail();
         for (String email : emails) {
@@ -91,7 +91,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
     @Override
     public CompanyEntity addCompanyEmail(String guid, String newEmail) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         if (!comp.getEmail().contains(newEmail)) {
             comp.getEmail().add(newEmail);
@@ -103,7 +103,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
     @Override
     public CompanyEntity removeEmail(String guid, String emailToRemove) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         List<String> emails = comp.getEmail();
 
@@ -122,7 +122,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
     @Override
     public CompanyEntity addCategory(String guid, String newCategory) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         if (!comp.getCategory().contains(newCategory)) {
             comp.getCategory().add(newCategory);
@@ -134,7 +134,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
     @Override
     public CompanyEntity removeCategory(String guid, String categoryToRemove) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         List<String> cateList = comp.getCategory();
 
@@ -152,7 +152,7 @@ public class CompanyDaoImpl implements CompanyDao {
     //area operation...
     @Override
     public CompanyEntity addArea(String guid, String newArea) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         if (!comp.getArea().contains(newArea)) {
             comp.getArea().add(newArea);
@@ -164,7 +164,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
     @Override
     public CompanyEntity removeArea(String guid, String areaToRemove) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         List<String> areaList = comp.getArea();
         Iterator<String> it = areaList.iterator();
@@ -181,7 +181,7 @@ public class CompanyDaoImpl implements CompanyDao {
     // @Override
     // public CompanyEntity addCategoryForCompany(String guid, String category)
     // {
-    // String time = CommonUtil.getCurrentTime();
+    // String time = CommonUtils.getCurrentTime();
     // CompanyEntity comp = getByGuid(guid);
     // comp.getCategory().add(category);
     // comp.setModDate(time);
@@ -190,7 +190,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
     // @Override
     // public CompanyEntity removeCategory(String guid, String category) {
-    // String time = CommonUtil.getCurrentTime();
+    // String time = CommonUtils.getCurrentTime();
     // CompanyEntity comp = getByGuid(guid);
     // List<String> cateList = comp.getCategory();
     // for (String cate : cateList) {
@@ -209,7 +209,7 @@ public class CompanyDaoImpl implements CompanyDao {
 
     @Override
     public CompanyEntity updatePassword(String guid, String newPassword) {
-        String time = CommonUtil.getCurrentTime();
+        String time = CommonUtils.getCurrentTime();
         CompanyEntity comp = getByGuid(guid);
         comp.setPassword(newPassword);
         comp.setModDate(time);
