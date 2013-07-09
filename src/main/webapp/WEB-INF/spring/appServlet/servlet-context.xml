@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 					 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-	<beans:import resource="tiles-context.xml"/>
+<!-- 	<beans:import resource="classpath:tiles-context.xml"/> -->
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
     <mvc:default-servlet-handler/>
 
