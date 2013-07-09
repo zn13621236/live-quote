@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.archer.mailman">
+	<logger name="com.archer.livequote">
 		<level value="info" />
 	</logger>
 	

@@ -7,36 +7,31 @@
 <body>
 	<h2>Company edit</h2>
 	<form:form method="post" commandName="company2">
-	<table border="1">
-		<tr>
-			<td>company name</td>
-			<td><c:out value="${company.companyName}"></c:out></td>
-			   <td><form:label path="companyName">new name</form:label></td>
-        <td><form:input path="companyName"  /></td> 
-		</tr>
-		<tr>
-			<td>company password</td>
-			<td><c:out value="****"></c:out></td>
-			        <td><form:label path="password">new password</form:label></td>
-        <td><form:input path="password" /></td>
-		</tr>
-		<tr>
-			<td>start date</td>
-			<td><c:out value="${company.addDate}"></c:out></td>
-		</tr>
-		<c:if test="${company.activeDate}!=null">
+		<table border="1">
 			<tr>
-				<td>expire date</td>
-				<td><c:out value="${company.activeDate}"></c:out></td>
+				<td>user name</td>
+				<td><c:out value="${company.userName}"></c:out></td>
+				<td><form:label path="userName">new username</form:label></td>
+				<td><form:input path="userName" /></td>
 			</tr>
-		</c:if>
-		<tr>
-        <td colspan="2">
-            <input type="submit" value="update"/>
-        </td>
-    </tr>
-		
-	</table>
-</form:form>
+			<tr>
+				<td>company password</td>
+				<td><c:out value="****"></c:out></td>
+				<td><form:label path="password">new password</form:label></td>
+				<td><form:input path="password" /></td>
+			</tr>
+			<tr>
+				<td>company phone</td>
+				<td><c:out value="${company.phone}"></c:out></td>
+				<td><form:label path="phone">new number</form:label></td>
+				<td><form:input path="phone" /></td>
+			</tr>
+	
+			<tr>
+				<td colspan="2"><input type="submit" value="update" /></td>
+			</tr>
+
+		</table>
+	</form:form>
 </body>
 </html>
