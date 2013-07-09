@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Repository
 public interface VendorAccountRepository extends MongoRepository<CompanyEntity, String> {
-    @Query("{ 'user_name' : ?0}")
+
     CompanyEntity findByUserName(final String userName);
 
     @Query("{ 'user_name' : ?0, 'password' : ?1 }")

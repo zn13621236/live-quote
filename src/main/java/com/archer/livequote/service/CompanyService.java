@@ -29,7 +29,9 @@ public interface CompanyService {
 
     boolean updateCompany(String guid, CompanyEntity comp);
 
-    CompanyEntity getByUsernameAndPassword(String username, String password);
+    CompanyEntity findByUserName(String username);
 
     void insertCompany(CompanyEntity company);
+
+    String encodePassword(String password);
 }

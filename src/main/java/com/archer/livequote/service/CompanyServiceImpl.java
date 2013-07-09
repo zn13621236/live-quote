@@ -6,13 +6,9 @@ import com.archer.livequote.db.domain.CompanyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import java.util.List;
 
 @Service("compService")
 public class CompanyServiceImpl implements CompanyService {
-
     @Autowired
     CompanyDao cdao;
 
@@ -23,12 +19,8 @@ public class CompanyServiceImpl implements CompanyService {
     private transient PasswordEncoder passwordEncoder;
     private final String SALT = "life-quote";
 
-    public CompanyEntity getByUsernameAndPassword(String username, String password) {
-        List<CompanyEntity> vendors = vendorAccountRepository.findByUserNameAndPasswordQuery(username, passwordEncoder.encodePassword(password, SALT));
-        if (!CollectionUtils.isEmpty(vendors)) {
-            return vendors.get(0);
-        }
-        return null;
+    public CompanyEntity findByUserName(String username) {
+        return vendorAccountRepository.findByUserName(username);
     }
 
     @Override
@@ -100,6 +92,10 @@ public class CompanyServiceImpl implements CompanyService {
                                String newCategory) {
         cdao.removeCategory(guid, oldCategory);
         cdao.addCategory(guid, newCategory);
+    }
+
+    public String encodePassword(String password) {
+        return passwordEncoder.encodePassword(password, SALT);
     }
 
 }

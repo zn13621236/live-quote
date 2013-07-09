@@ -40,12 +40,11 @@ public class VendorAuthenticationProvider extends AbstractUserDetailsAuthenticat
             throw new BadCredentialsException("Please enter password");
         }
 
-        CompanyEntity companyEntity = companyService.getByUsernameAndPassword(username, password);
-        if (companyEntity == null) {
+        CompanyEntity companyEntity = companyService.findByUserName(username);
+        if (companyEntity == null || !companyService.encodePassword(password).equals(companyEntity.getPassword())) {
             logger.warn("Username {}, password {}: username and password not found", username, password);
             throw new BadCredentialsException("Invalid Username/Password");
         }
-
         return new User(username, password, true, true, true, true, Arrays.asList(new SimpleGrantedAuthority("ROLE_VENDOR")));
     }
 }
