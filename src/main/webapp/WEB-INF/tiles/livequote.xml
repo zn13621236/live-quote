@@ -5,10 +5,10 @@
 <tiles-definitions>
     <definition name="base.definition"
         template="/WEB-INF/view/layout/layout.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
-        <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+        <put-attribute name="title" value="live quote" />
+        <put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
+        <put-attribute name="body" value="body" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
     </definition>
  
     <definition name="contact" extends="base.definition">
