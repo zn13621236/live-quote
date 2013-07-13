@@ -1,0 +1,14 @@
+---
+applications:
+- name: live-quote
+  memory: 512M
+  instances: 1
+  host: live-quote
+  domain: cfapps.io
+  path: target/live-quote.war
+  services:
+    '5':
+      label: mongolab
+      provider: mongolab
+      version: n/a
+      plan: sandbox

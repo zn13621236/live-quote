@@ -16,8 +16,14 @@
         <spring.security.version>3.1.2.RELEASE</spring.security.version>
         <java.mail.version>1.4</java.mail.version>
         <mongo.java.driver.version>2.11.1</mongo.java.driver.version>
+        <cloudfoundry.version>0.8.4</cloudfoundry.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.cloudfoundry</groupId>
+            <artifactId>cloudfoundry-runtime</artifactId>
+            <version>${cloudfoundry.version}</version>
+        </dependency>
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -378,6 +384,14 @@
         <repository>
             <id>codehaus</id>
             <url>http://repository.codehaus.org/org/codehaus</url>
+        </repository>
+        <repository>
+            <id>org.springframework.maven.milestone</id>
+            <name>Spring Maven Milestone Repository</name>
+            <url>http://maven.springframework.org/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
