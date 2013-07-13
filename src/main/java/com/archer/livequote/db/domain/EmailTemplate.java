@@ -1,11 +1,11 @@
 package com.archer.livequote.db.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.bson.types.ObjectId;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -22,7 +22,7 @@ public class EmailTemplate implements Serializable, Cloneable {
     @JsonIgnore
     private ObjectId id;
 
-    @JsonProperty("id")
+    @JsonProperty("guid")
     private String guid;
 
     private String description;
