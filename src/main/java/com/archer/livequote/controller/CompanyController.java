@@ -1,8 +1,11 @@
 package com.archer.livequote.controller;
 
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
+
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.archer.livequote.db.domain.CompanyEntity;
+import com.archer.livequote.model.CompanyCreateForm;
 import com.archer.livequote.service.CompanyService;
 
 @Controller
@@ -43,14 +47,24 @@ public class CompanyController {
 	// new company sign up ..
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String createCompany(Model model) {
-		CompanyEntity comp = new CompanyEntity();
+		CompanyCreateForm comp = new CompanyCreateForm();
 		model.addAttribute("company", comp);
 		return "companyCreate";
 	}
-
+//@ModelAttribute("company")
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String createCompany(@ModelAttribute("company") CompanyEntity comp,
+	public String createCompany(@Valid  CompanyCreateForm company,
 			BindingResult result, Model model) {
+		if(result.hasErrors()){
+			return "companyCreate";
+		}
+		CompanyEntity comp=new CompanyEntity();
+		comp.setArea(company.getArea());
+		comp.setCategory(company.getCategory());
+		comp.setCompanyName(company.getCompanyName());
+		comp.setEmail(Arrays.asList(company.getEmail()));
+		comp.setPassword(company.getPassword());
+		comp.setPhone(company.getPhone());
 		return manageAccount(cService.createCompany(comp).getGuid(), model);
 	}
 

@@ -1,4 +1,4 @@
-package com.archer.livequote.dto;
+package com.archer.livequote.model;
 
 import java.util.List;
 

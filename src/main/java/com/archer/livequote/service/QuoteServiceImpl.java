@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.archer.livequote.model.QuoteRequest;
 import com.archer.livequote.util.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,6 @@ import com.archer.livequote.dao.UserDao;
 import com.archer.livequote.db.domain.CompanyEntity;
 import com.archer.livequote.db.domain.QuoteHistory;
 import com.archer.livequote.db.domain.UserEntity;
-import com.archer.livequote.dto.QuoteRequest;
 import com.archer.livequote.email.service.EmailService;
 
 @Service("quoteService")

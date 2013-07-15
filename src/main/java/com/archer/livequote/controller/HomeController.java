@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.archer.livequote.dto.QuoteRequest;
+import com.archer.livequote.model.QuoteRequest;
 import com.archer.livequote.service.QuoteService;
 
 /**

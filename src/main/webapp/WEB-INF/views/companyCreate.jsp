@@ -14,15 +14,21 @@
 			</tr>
 			<tr>
 				<td><form:label path="userName">User Name</form:label></td>
-				<td><form:input path="userName" /></td>
+				<td><form:input path="userName" />
+				 <form:errors path="userName"></form:errors>
+				</td>
 			</tr>
 			<tr>
 				<td><form:label path="password">Password</form:label></td>
-				<td><form:input path="password" /></td>
+				<td><form:input path="password" />
+					 <form:errors path="password"></form:errors>
+				</td>
 			</tr>
 			<tr>
 				<td><form:label path="email">Email</form:label></td>
-				<td><form:input path="email" /></td>
+				<td><form:input path="email" />				
+					 <form:errors path="email"></form:errors>
+				</td>
 			</tr>
 			<tr>
 				<td><form:label path="phone">Phone number</form:label></td>
