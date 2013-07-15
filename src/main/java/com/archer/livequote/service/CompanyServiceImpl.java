@@ -23,16 +23,13 @@ public class CompanyServiceImpl implements CompanyService {
         return vendorAccountRepository.findByUserName(username);
     }
 
-    @Override
-    public void insertCompany(CompanyEntity company) {
-        company.setPassword(passwordEncoder.encodePassword(company.getPassword(), SALT));
-        cdao.insertNewCompany(company);
-    }
 
     @Override
-    public void createCompany(CompanyEntity comp) {
-        comp.setAccountType("free");
-        cdao.insertNewCompany(comp);
+    public CompanyEntity createCompany(CompanyEntity comp) {
+    	comp.setAccountType("free");
+    	comp.setStatus("active");
+    	comp.setPassword(passwordEncoder.encodePassword(comp.getPassword(), SALT));
+        return cdao.insertNewCompany(comp);
     }
 
     @Override

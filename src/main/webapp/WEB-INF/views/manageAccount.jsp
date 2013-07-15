@@ -17,10 +17,6 @@
 			<td>${company.userName}</td>
 		</tr>
 		<tr>
-			<td>pass word</td>
-			<td>${company.password}</td>
-		</tr>
-		<tr>
 			<td>Account type</td>
 			<td>${company.accountType}</td>
 		</tr>
@@ -44,58 +40,40 @@
 		</c:if>
 
 
-				<tr>
-					<td>area</td>
-					<td><a
-						href="<c:url value="/company/${company.guid}/area/add"/>">add</a></td>
-				</tr>
+		<tr>
+			<td>area</td>
+		</tr>
 		<c:forEach var="j" items="${company.area}">
 			<tr>
-				<td>Company area</td>
-
+				<td></td>
 				<td><c:out value="${j}" /></td>
-						<td><a
-					href="<c:url value="/company/${company.guid}/area/remove"/>?oldArea=${j}">remove</a></td>
-				<td><a
-					href="<c:url value="/company/${company.guid}/area/update"/>?oldArea=${j}">update</a></td>
 			</tr>
 		</c:forEach>
-	<tr>
-					<td>category</td>
-					<td><a
-						href="<c:url value="/company/${company.guid}/category/add"/>">add</a></td>
-				</tr>
+		<tr>
+			<td>category</td>
+
+		</tr>
 		<c:forEach var="h" items="${company.category}">
 			<tr>
-				<td>Company category</td>
+				<td></td>
 				<td><c:out value="${h}" /></td>
-							<td><a
-					href="<c:url value="/company/${company.guid}/category/remove"/>?oldCategory=${h}">remove</a></td>
-				<td><a
-					href="<c:url value="/company/${company.guid}/category/update"/>?oldCategory=${h}">update</a></td>
+
 			</tr>
 		</c:forEach>
 
-	<tr>
-					<td>email</td>
-					<td><a
-						href="<c:url value="/company/${company.guid}/emailManagement/add"/>">add</a></td>
-				</tr>
+		<tr>
+			<td>email</td>
+
+		</tr>
 		<c:forEach var="i" items="${company.email}">
 			<tr>
-				<td>Company email list</td>
+				<td></td>
 				<td><c:out value="${i}" /></td>
-				
 
-				<td><a
-					href="<c:url value="/company/${company.guid}/emailManagement/remove"/>?oldEmail=${i}">remove</a>
-				</td>
-				<td><a
-					href="<c:url value="/company/${company.guid}/emailManagement/update"/>?oldEmail=${i}">update</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 
-
+<a href="<c:url value="/company/${company.guid}/update"/>">update</a>
 </body>
 </html>

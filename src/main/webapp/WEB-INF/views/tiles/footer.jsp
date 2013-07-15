@@ -3,10 +3,6 @@
 	<footer>
 		<div id="footer-content">
 			<div id="footer-content-inner">
-
-
-
-
 				<div id="copyright">
 					<p>footer</p>
 				</div>
@@ -16,9 +12,8 @@
 			<div class="clearfix"></div>
 
 		</div>
+	</footer>
 		<!--end footer-content-inner-->
-</div>
-<!--end footer-content-->
 
-</footer>
+		<!--end footer-content-->
 </div>

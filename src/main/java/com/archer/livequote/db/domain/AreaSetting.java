@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "area_setting")
 public class AreaSetting {
-	@Field(value = "area_name")
+	@Field (value = "area_name")
 	private String areaName;
 	@Field(value = "zipcode_range")
 	private ZipCodeRange zipCodeRange;

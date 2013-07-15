@@ -31,6 +31,6 @@ public class LoginController {
     public String manageEmail(@PathVariable String companyGuid, Model model) {
         CompanyEntity ce = cdao.getByGuid(companyGuid);
         model.addAttribute("company", ce);
-        return "manageEmail";
+        return "manageAccount";
     }
 }

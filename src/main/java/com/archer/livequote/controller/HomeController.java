@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.archer.livequote.dto.QuoteRequest;
 import com.archer.livequote.service.QuoteService;
@@ -37,8 +38,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String home(@ModelAttribute("quoteRequest") QuoteRequest qr, Model model) {
-                qs.sendQuote(qr);
+	public String home(@ModelAttribute("quoteRequest") QuoteRequest qr,@RequestParam("day") String day,@RequestParam("month") String month,@RequestParam("year") String year, Model model) {
+		
+		qr.setServiceTime(day+"/"+month+"/"+year);
+		qs.sendQuote(qr);
 		return "success";
 	}
 	

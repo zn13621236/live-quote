@@ -4,7 +4,7 @@ import com.archer.livequote.db.domain.CompanyEntity;
 
 public interface CompanyService {
 
-    void createCompany(CompanyEntity comp);
+    CompanyEntity createCompany(CompanyEntity comp);
 
     CompanyEntity getCompanyById(String guid);
 
@@ -30,8 +30,6 @@ public interface CompanyService {
     boolean updateCompany(String guid, CompanyEntity comp);
 
     CompanyEntity findByUserName(String username);
-
-    void insertCompany(CompanyEntity company);
 
     String encodePassword(String password);
 }

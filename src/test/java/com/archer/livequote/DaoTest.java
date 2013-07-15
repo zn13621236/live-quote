@@ -61,7 +61,7 @@ public class DaoTest {
 
     @Test
     public void insertPassword() {
-        companyService.insertCompany(createCompany("a@b.com", "a@b.com"));
+        companyService.createCompany(createCompany("a@b.com", "a@b.com"));
     }
 
     private CompanyEntity createCompany(String username, String password) {
