@@ -55,6 +55,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public boolean updateCompany(String guid, CompanyEntity comp) {
+    	if(comp.getPassword()!=null){
+    		comp.setPassword(passwordEncoder.encodePassword(comp.getPassword(), SALT));
+    	}
         return cdao.updateComapnyInfo(guid, comp) != null;
     }
 

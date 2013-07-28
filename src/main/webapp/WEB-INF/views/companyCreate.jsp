@@ -1,34 +1,50 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-<title>Spring 3 MVC Series - Contact Manager</title>
+<title>Sign up</title>
+<style>
+.error {
+	color: #ff0000;
+}
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+</style>
 </head>
 <body>
 	<h2>Company sign up</h2>
 	<form:form method="post" commandName="company">
-
+		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
 				<td><form:label path="companyName">Company Name</form:label></td>
 				<td><form:input path="companyName" /></td>
+				<td><form:errors path="companyName" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="userName">User Name</form:label></td>
-				<td><form:input path="userName" />
-				 <form:errors path="userName"></form:errors>
-				</td>
+				<td><form:input path="userName" /></td>
+				<td><form:errors path="userName"></form:errors></td>
 			</tr>
 			<tr>
 				<td><form:label path="password">Password</form:label></td>
-				<td><form:input path="password" />
-					 <form:errors path="password"></form:errors>
-				</td>
+				<td><form:input path="password" /></td>
+				<td><form:errors path="password"></form:errors></td>
+			</tr>
+			<tr>
+				<td><form:label path="confirmPassword">Confirm password</form:label></td>
+				<td><form:input path="confirmPassword" /></td>
+				<td><form:errors path="confirmPassword"></form:errors></td>
 			</tr>
 			<tr>
 				<td><form:label path="email">Email</form:label></td>
-				<td><form:input path="email" />				
-					 <form:errors path="email"></form:errors>
-				</td>
+				<td><form:input path="email" /></td> 
+				<td><form:errors path="email"></form:errors></td>
 			</tr>
 			<tr>
 				<td><form:label path="phone">Phone number</form:label></td>

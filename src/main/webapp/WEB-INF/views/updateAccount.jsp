@@ -1,10 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
 <title>company</title>
 </head>
 <body>
-	<h2>manage account</h2>
+	<h2>update account</h2>
 	
 	
 	<form:form method="post" commandName="company2">
@@ -20,6 +21,7 @@
 				<td><c:out value="****"></c:out></td>
 				<td><form:label path="password">new password</form:label></td>
 				<td><form:input path="password" /></td>
+				<td><form:input path="confirmPassword" /></td>
 			</tr>
 			<tr>
 				<td>company phone</td>
@@ -36,10 +38,6 @@
 	</form:form>
 	
 	<table border="1">
-
-
-	
-
 		<tr>
 			<td>area</td>
 			<td><a href="<c:url value="/company/${company.guid}/area/add"/>">add</a></td>

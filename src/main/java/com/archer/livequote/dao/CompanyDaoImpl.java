@@ -63,8 +63,8 @@ public class CompanyDaoImpl implements CompanyDao {
             comp.setExpireDate(newComp.getExpireDate());
         if (newComp.getPhone() != null)
             comp.setPhone(newComp.getPhone());
-        if (newComp.getPassword() != null)
-            comp.setPassword(newComp.getPassword());
+        if (newComp.getPassword() != null){
+            comp.setPassword(newComp.getPassword());}
         if (newComp.getUserName() != null)
             comp.setUserName(newComp.getUserName());
         if (newComp.getStatus() != null)
@@ -207,13 +207,13 @@ public class CompanyDaoImpl implements CompanyDao {
         return crud.remove("guid", guid, CompanyEntity.class) != null;
     }
 
-    @Override
-    public CompanyEntity updatePassword(String guid, String newPassword) {
-        String time = CommonUtils.getCurrentTime();
-        CompanyEntity comp = getByGuid(guid);
-        comp.setPassword(newPassword);
-        comp.setModDate(time);
-        return crud.save(comp);
-    }
+//    @Override
+//    public CompanyEntity updatePassword(String guid, String newPassword) {
+//        String time = CommonUtils.getCurrentTime();
+//        CompanyEntity comp = getByGuid(guid);
+//        comp.setPassword(newPassword);
+//        comp.setModDate(time);
+//        return crud.save(comp);
+//    }
 
 }

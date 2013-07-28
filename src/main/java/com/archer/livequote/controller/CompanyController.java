@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.archer.livequote.db.domain.CompanyEntity;
-import com.archer.livequote.model.CompanyCreateForm;
+import com.archer.livequote.model.CompanyForm;
 import com.archer.livequote.service.CompanyService;
 
 @Controller
@@ -47,25 +47,32 @@ public class CompanyController {
 	// new company sign up ..
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String createCompany(Model model) {
-		CompanyCreateForm comp = new CompanyCreateForm();
+		CompanyForm comp = new CompanyForm();
 		model.addAttribute("company", comp);
 		return "companyCreate";
 	}
-//@ModelAttribute("company")
+
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String createCompany(@Valid  CompanyCreateForm company,
-			BindingResult result, Model model) {
-		if(result.hasErrors()){
+	public String createCompany(@Valid CompanyForm company,
+			BindingResult bindingResult) {
+		// model.addAttribute("company", company);
+		if (bindingResult.hasErrors()) {
+			System.out.println("something is wrong!");
 			return "companyCreate";
 		}
-		CompanyEntity comp=new CompanyEntity();
+		if (!company.getPassword().equalsIgnoreCase(
+				company.getConfirmPassword())) {
+			return "companyCreate";
+		}
+		CompanyEntity comp = new CompanyEntity();
 		comp.setArea(company.getArea());
 		comp.setCategory(company.getCategory());
 		comp.setCompanyName(company.getCompanyName());
 		comp.setEmail(Arrays.asList(company.getEmail()));
 		comp.setPassword(company.getPassword());
 		comp.setPhone(company.getPhone());
-		return manageAccount(cService.createCompany(comp).getGuid(), model);
+		return "redirect:/" + cService.createCompany(comp).getGuid()
+				+ "/manage";
 	}
 
 	// manage account
@@ -75,37 +82,45 @@ public class CompanyController {
 		model.addAttribute("company", ce);
 		return "manageAccount";
 	}
+
 	// update account
 	@RequestMapping(value = "/{companyGuid}/update", method = RequestMethod.GET)
 	public String updateAccount(@PathVariable String companyGuid, Model model) {
 		CompanyEntity ce = cService.getCompanyById(companyGuid);
 		model.addAttribute("company", ce);
-		CompanyEntity ce2 = new CompanyEntity();
-		model.addAttribute("company2", ce2);
+		CompanyForm company2 = new CompanyForm();
+		model.addAttribute("company2", company2);
 		return "updateAccount";
 	}
-	
 
 	// update company account....
 
-//		@RequestMapping(value = "/{companyGuid}", method = RequestMethod.GET)
-//		public String companyEdit(@PathVariable String companyGuid, Model model) {
-//			CompanyEntity ce = cService.getCompanyById(companyGuid);
-//			CompanyEntity ce2 = new CompanyEntity();
-//			model.addAttribute("company", ce);
-//			model.addAttribute("company2", ce2);
-//			return "companyEdit";
-//		}
+	// @RequestMapping(value = "/{companyGuid}", method = RequestMethod.GET)
+	// public String companyEdit(@PathVariable String companyGuid, Model model)
+	// {
+	// CompanyEntity ce = cService.getCompanyById(companyGuid);
+	// CompanyEntity ce2 = new CompanyEntity();
+	// model.addAttribute("company", ce);
+	// model.addAttribute("company2", ce2);
+	// return "companyEdit";
+	// }
 
-		@RequestMapping(value = "/{companyGuid}/update", method = RequestMethod.POST)
-		public String updateAccount(@PathVariable String companyGuid,
-				@ModelAttribute("company2") CompanyEntity comp,
-				BindingResult result, Model model) {
-			cService.updateCompany(companyGuid, comp);
-			return manageAccount(companyGuid, model);
+	@RequestMapping(value = "/{companyGuid}/update", method = RequestMethod.POST)
+	public String updateAccount(@PathVariable String companyGuid,
+			@Valid CompanyForm company2, BindingResult result, Model model) {
+		if (result.hasErrors()
+				|| !company2.getPassword().equalsIgnoreCase(
+						company2.getConfirmPassword())) {
+			return "updateAccount";
 		}
+		CompanyEntity ce = new CompanyEntity();
+		ce.setCompanyName(company2.getCompanyName());
+		ce.setPassword(company2.getPassword());
+		ce.setPhone(company2.getPhone());
+		cService.updateCompany(companyGuid, ce);
+		return manageAccount(companyGuid, model);
+	}
 
-	
 	// edit email.....
 
 	// email management page
@@ -256,5 +271,4 @@ public class CompanyController {
 		return manageAccount(companyGuid, model);
 	}
 
-	
 }

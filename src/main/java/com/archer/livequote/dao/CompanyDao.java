@@ -28,7 +28,7 @@ public interface CompanyDao {
 
     boolean removeCompany(String guid);
 
-    CompanyEntity updatePassword(String guid, String newPassword);
+  //  CompanyEntity updatePassword(String guid, String newPassword);
 
     CompanyEntity updateComapnyInfo(String guid, CompanyEntity newComp);
 

@@ -2,21 +2,26 @@ package com.archer.livequote.model;
 
 import java.util.List;
 
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class CompanyCreateForm {
+public class CompanyForm {
+	@NotEmpty
 	private String companyName;
+	@NotEmpty
+    @Size(min=4, max=20)
 	private String userName;
 	private String password;
+	private String confirmPassword;
+	@NotEmpty
+	@Email
 	private String email;
 	private String phone;
 	private List<String> area;
 	private List<String> category;
-	@NotEmpty
+
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -24,8 +29,7 @@ public class CompanyCreateForm {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-	@NotEmpty
-    @Size(min=4, max=20)
+
 	public String getUserName() {
 		return userName;
 	}
@@ -41,8 +45,7 @@ public class CompanyCreateForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@NotEmpty
-	@Email
+
 	public String getEmail() {
 		return email;
 	}
@@ -73,6 +76,15 @@ public class CompanyCreateForm {
 
 	public void setCategory(List<String> category) {
 		this.category = category;
+	}
+
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	@Override
