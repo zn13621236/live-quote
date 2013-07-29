@@ -18,7 +18,7 @@
 </head>
 <body>
 	<h2>Company sign up</h2>
-	<form:form method="post" commandName="company">
+	<form:form method="post" commandName="companyForm" action="signup">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
@@ -33,12 +33,12 @@
 			</tr>
 			<tr>
 				<td><form:label path="password">Password</form:label></td>
-				<td><form:input path="password" /></td>
+				<td><form:input type="password" path="password" /></td>
 				<td><form:errors path="password"></form:errors></td>
 			</tr>
 			<tr>
 				<td><form:label path="confirmPassword">Confirm password</form:label></td>
-				<td><form:input path="confirmPassword" /></td>
+				<td><form:input type="password" path="confirmPassword" /></td>
 				<td><form:errors path="confirmPassword"></form:errors></td>
 			</tr>
 			<tr>

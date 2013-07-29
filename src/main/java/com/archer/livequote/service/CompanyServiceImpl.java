@@ -24,6 +24,10 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
 
+    public String encodePassWord(String pass){
+    	return passwordEncoder.encodePassword(pass, SALT);
+    }
+    
     @Override
     public CompanyEntity createCompany(CompanyEntity comp) {
     	comp.setAccountType("free");

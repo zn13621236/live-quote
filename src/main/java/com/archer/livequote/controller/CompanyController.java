@@ -1,9 +1,6 @@
 package com.archer.livequote.controller;
 
-import java.text.DateFormat;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -13,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.archer.livequote.db.domain.CompanyEntity;
+import com.archer.livequote.model.ChangePassForm;
 import com.archer.livequote.model.CompanyForm;
 import com.archer.livequote.service.CompanyService;
 
@@ -33,45 +30,45 @@ public class CompanyController {
 	CompanyService cService;
 
 	// company front page... for create, delete, update option
-	@RequestMapping(method = RequestMethod.GET)
-	public String companyHome(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate);
-		return "company";
-	}
+	// @RequestMapping(method = RequestMethod.GET)
+	// public String companyHome(Locale locale, Model model) {
+	// logger.info("Welcome home! The client locale is {}.", locale);
+	// Date date = new Date();
+	// DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+	// DateFormat.LONG, locale);
+	// String formattedDate = dateFormat.format(date);
+	// model.addAttribute("serverTime", formattedDate);
+	// return "company";
+	// }
 
 	// new company sign up ..
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String createCompany(Model model) {
-		CompanyForm comp = new CompanyForm();
-		model.addAttribute("company", comp);
+		model.addAttribute("companyForm", new CompanyForm());
 		return "companyCreate";
 	}
 
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String createCompany(@Valid CompanyForm company,
-			BindingResult bindingResult) {
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public String createCompany(@Valid CompanyForm companyForm,
+			BindingResult result) {
 		// model.addAttribute("company", company);
-		if (bindingResult.hasErrors()) {
+		if (result.hasErrors()) {
 			System.out.println("something is wrong!");
 			return "companyCreate";
 		}
-		if (!company.getPassword().equalsIgnoreCase(
-				company.getConfirmPassword())) {
+		if (!companyForm.getPassword().equalsIgnoreCase(
+				companyForm.getConfirmPassword())) {
 			return "companyCreate";
 		}
 		CompanyEntity comp = new CompanyEntity();
-		comp.setArea(company.getArea());
-		comp.setCategory(company.getCategory());
-		comp.setCompanyName(company.getCompanyName());
-		comp.setEmail(Arrays.asList(company.getEmail()));
-		comp.setPassword(company.getPassword());
-		comp.setPhone(company.getPhone());
-		return "redirect:/" + cService.createCompany(comp).getGuid()
+		comp.setUserName(companyForm.getUserName());
+		comp.setArea(companyForm.getArea());
+		comp.setCategory(companyForm.getCategory());
+		comp.setCompanyName(companyForm.getCompanyName());
+		comp.setEmail(Arrays.asList(companyForm.getEmail()));
+		comp.setPassword(companyForm.getPassword());
+		comp.setPhone(companyForm.getPhone());
+		return "redirect:/company/" + cService.createCompany(comp).getGuid()
 				+ "/manage";
 	}
 
@@ -269,6 +266,34 @@ public class CompanyController {
 			@RequestParam("oldCategory") String oldCategory, Model model) {
 		cService.updateCategory(companyGuid, oldCategory, newCategory);
 		return manageAccount(companyGuid, model);
+	}
+
+	// update password
+	@RequestMapping(value = "/{companyGuid}/password/update", method = RequestMethod.GET)
+	public String updatePass(@PathVariable String companyGuid, Model model) {
+		model.addAttribute("changePassWordForm", new ChangePassForm());
+		return "passwordUpdate";
+	}
+
+	@RequestMapping(value = "/{companyGuid}/password/update", method = RequestMethod.POST)
+	public String updatePass(@PathVariable String companyGuid,
+			@Valid ChangePassForm changePassWordForm, BindingResult result,
+			Model model) {
+		if (result.hasErrors()
+				|| (!changePassWordForm.getConfirmPassword().equalsIgnoreCase(
+						changePassWordForm.getNewPassWord()))) {
+			return "passwordUpdate";
+		}
+		CompanyEntity ce = cService.getCompanyById(companyGuid);
+		String encodePass = cService.encodePassword(changePassWordForm
+				.getOldPassWord());
+		if (ce.getPassword().equalsIgnoreCase(encodePass)) {
+			ce.setPassword(changePassWordForm.getNewPassWord());
+			cService.updateCompany(companyGuid, ce);
+			return manageAccount(companyGuid, model);
+		} else {
+			return "passwordUpdate";
+		}
 	}
 
 }
