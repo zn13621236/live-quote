@@ -1,16 +1,24 @@
 package com.archer.livequote.model;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.archer.livequote.db.domain.CompanyEntity;
 import com.archer.livequote.db.domain.UserEntity;
 
 public class QuoteRequest {
-
+	@NotEmpty
 	private String category;
-	private String serviceTime;
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	private Date serviceTime;
 	private String detail;
 	private List<CompanyEntity> perferedCompany;
+	@Valid
 	private UserEntity ue;
 
 	public String getCategory() {
@@ -45,11 +53,11 @@ public class QuoteRequest {
 		this.ue = ue;
 	}
 
-	public String getServiceTime() {
+	public Date getServiceTime() {
 		return serviceTime;
 	}
 
-	public void setServiceTime(String serviceTime) {
+	public void setServiceTime(Date serviceTime) {
 		this.serviceTime = serviceTime;
 	}
 

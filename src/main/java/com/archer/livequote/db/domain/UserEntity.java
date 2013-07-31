@@ -2,7 +2,11 @@ package com.archer.livequote.db.domain;
 
 import java.util.List;
 
+import javax.validation.constraints.Pattern;
+
 import org.bson.types.ObjectId;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -14,11 +18,15 @@ public class UserEntity {
 	private ObjectId id;
 	@Field("guid")
 	private String guid;
+	@NotEmpty
+	@Email
 	private String email;
 	@Field("system_used_count")
 	private int usedCount = 1;
 	@Field("cell_number")
 	private String cell;
+	@Pattern(regexp = "^\\d{5}(?:[-\\s]\\d{4})?$")
+	@NotEmpty
 	private String zip;
 	@Field("add_date")
 	private String addDate;
