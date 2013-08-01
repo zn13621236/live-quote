@@ -8,12 +8,16 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.archer.livequote.db.domain.CompanyEntity;
+import com.archer.livequote.validator.Unique;
+
 public class CompanyForm {
 	@NotEmpty
 	@Size(min=2)
 	private String companyName;
 	@NotEmpty
     @Size(min=4, max=20)
+	@Unique(entity=CompanyEntity.class, property="user_name",message = "{Unique.companyForm.userName}")
 	private String userName;
     @Size(min=5, max=20)
 	private String password;
@@ -23,7 +27,9 @@ public class CompanyForm {
 	private String email;
 	@Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$")
 	private String phone;
+	@NotEmpty
 	private List<String> area;
+	@NotEmpty
 	private List<String> category;
 	public CompanyForm() {
 		super();

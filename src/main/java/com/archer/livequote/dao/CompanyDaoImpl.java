@@ -25,6 +25,11 @@ public class CompanyDaoImpl implements CompanyDao {
     public CompanyEntity getByEmail(String email) {
         return crud.getByField("email_list", email, CompanyEntity.class);
     }
+    
+    @Override
+    public CompanyEntity getByUserName(String userName) {
+        return crud.getByField("user_name", userName, CompanyEntity.class);
+    }
 
     @Override
     public List<CompanyEntity> getByCaegoryAndArea(String category, String area) {

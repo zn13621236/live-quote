@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -16,6 +17,7 @@ public class CompanyEntity {
     @Field("company_name")
     private String companyName;
     @Field("user_name")
+    @Indexed(unique=true) 
     private String userName;
     @Field("password")
     private String password;

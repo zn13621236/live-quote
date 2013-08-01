@@ -10,7 +10,9 @@ public interface CompanyDao {
     CompanyEntity getByGuid(String guid);
 
     CompanyEntity getByEmail(String email);
-
+    
+    CompanyEntity getByUserName(String userName);
+    
     CompanyEntity insertNewCompany(CompanyEntity newCompany);
 
 //	CompanyEntity updateCompanyName(String guid, String newName);

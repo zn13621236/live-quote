@@ -19,6 +19,7 @@ public class CompanyServiceImpl implements CompanyService {
     private transient PasswordEncoder passwordEncoder;
     private final String SALT = "live-quote";
 
+    @Override
     public CompanyEntity findByUserName(String username) {
         return vendorAccountRepository.findByUserName(username);
     }

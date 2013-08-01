@@ -50,7 +50,7 @@ public class CompanyController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String createCompany(@Valid CompanyForm companyForm,
-			BindingResult result) {
+			BindingResult result, Model model) {
 		// model.addAttribute("company", company);
 		if (result.hasErrors()) {
 			System.out.println("something is wrong!");
@@ -58,6 +58,7 @@ public class CompanyController {
 		}
 		if (!companyForm.getPassword().equalsIgnoreCase(
 				companyForm.getConfirmPassword())) {
+			result.reject("asdfsdafasf");
 			return "companyCreate";
 		}
 		CompanyEntity comp = new CompanyEntity();
