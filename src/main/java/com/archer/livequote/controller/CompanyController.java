@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.archer.livequote.db.domain.CompanyEntity;
 import com.archer.livequote.model.ChangePassForm;
 import com.archer.livequote.model.CompanyForm;
+import com.archer.livequote.model.UpdateAccountForm;
 import com.archer.livequote.service.CompanyService;
 
 @Controller
@@ -29,18 +30,6 @@ public class CompanyController {
 	@Autowired
 	CompanyService cService;
 
-	// company front page... for create, delete, update option
-	// @RequestMapping(method = RequestMethod.GET)
-	// public String companyHome(Locale locale, Model model) {
-	// logger.info("Welcome home! The client locale is {}.", locale);
-	// Date date = new Date();
-	// DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-	// DateFormat.LONG, locale);
-	// String formattedDate = dateFormat.format(date);
-	// model.addAttribute("serverTime", formattedDate);
-	// return "company";
-	// }
-
 	// new company sign up ..
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String createCompany(Model model) {
@@ -50,15 +39,10 @@ public class CompanyController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String createCompany(@Valid CompanyForm companyForm,
-			BindingResult result, Model model) {
+			BindingResult result) {
 		// model.addAttribute("company", company);
 		if (result.hasErrors()) {
-			System.out.println("something is wrong!");
-			return "companyCreate";
-		}
-		if (!companyForm.getPassword().equalsIgnoreCase(
-				companyForm.getConfirmPassword())) {
-			result.reject("asdfsdafasf");
+			logger.info("something is wrong!");
 			return "companyCreate";
 		}
 		CompanyEntity comp = new CompanyEntity();
@@ -86,50 +70,24 @@ public class CompanyController {
 	public String updateAccount(@PathVariable String companyGuid, Model model) {
 		CompanyEntity ce = cService.getCompanyById(companyGuid);
 		model.addAttribute("company", ce);
-		CompanyForm company2 = new CompanyForm();
-		model.addAttribute("company2", company2);
+		model.addAttribute("updateForm", new UpdateAccountForm());
 		return "updateAccount";
 	}
 
-	// update company account....
-
-	// @RequestMapping(value = "/{companyGuid}", method = RequestMethod.GET)
-	// public String companyEdit(@PathVariable String companyGuid, Model model)
-	// {
-	// CompanyEntity ce = cService.getCompanyById(companyGuid);
-	// CompanyEntity ce2 = new CompanyEntity();
-	// model.addAttribute("company", ce);
-	// model.addAttribute("company2", ce2);
-	// return "companyEdit";
-	// }
-
 	@RequestMapping(value = "/{companyGuid}/update", method = RequestMethod.POST)
 	public String updateAccount(@PathVariable String companyGuid,
-			@Valid CompanyForm company2, BindingResult result, Model model) {
-		if (result.hasErrors()
-				|| !company2.getPassword().equalsIgnoreCase(
-						company2.getConfirmPassword())) {
-			return "updateAccount";
+			@Valid UpdateAccountForm companyForm, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			logger.info("something is wrong..");
+			return updateAccount(companyGuid, model);					
+				//	"redirect:/company/" + companyGuid+ "/update";
 		}
 		CompanyEntity ce = new CompanyEntity();
-		ce.setCompanyName(company2.getCompanyName());
-		ce.setPassword(company2.getPassword());
-		ce.setPhone(company2.getPhone());
+		if(companyForm.getPhone()!=null){
+		ce.setPhone(companyForm.getPhone());}
 		cService.updateCompany(companyGuid, ce);
 		return manageAccount(companyGuid, model);
 	}
-
-	// edit email.....
-
-	// email management page
-	// @RequestMapping(value = "/{companyGuid}/emailManagement", method =
-	// RequestMethod.GET)
-	// public String manageEmail(@PathVariable String companyGuid, Model model)
-	// {
-	// CompanyEntity ce = cService.getCompanyById(companyGuid);
-	// model.addAttribute("company", ce);
-	// return "manageAccount";
-	// }
 
 	// update email
 	@RequestMapping(value = "/{companyGuid}/emailManagement/update", method = RequestMethod.GET)
@@ -145,7 +103,8 @@ public class CompanyController {
 	public String updateEmail(@PathVariable String companyGuid,
 			@RequestParam("newEmail") String newEmail,
 			@RequestParam("oldEmail") String oldEmail, Model model) {
-		cService.updateEmail(companyGuid, oldEmail, newEmail);
+		if(newEmail!=null&&!newEmail.isEmpty()){
+		cService.updateEmail(companyGuid, oldEmail, newEmail);}
 		return manageAccount(companyGuid, model);
 	}
 
@@ -173,7 +132,8 @@ public class CompanyController {
 	@RequestMapping(value = "/{companyGuid}/emailManagement/add", method = RequestMethod.POST)
 	public String addEmail(@PathVariable String companyGuid,
 			@RequestParam String newEmail, Model model) {
-		cService.addEmail(companyGuid, newEmail);
+		if(newEmail!=null&&!newEmail.isEmpty()){
+		cService.addEmail(companyGuid, newEmail);}
 		return manageAccount(companyGuid, model);
 	}
 
@@ -201,7 +161,8 @@ public class CompanyController {
 	@RequestMapping(value = "/{companyGuid}/area/add", method = RequestMethod.POST)
 	public String addArea(@PathVariable String companyGuid,
 			@RequestParam String newArea, Model model) {
-		cService.addArea(companyGuid, newArea);
+		if(newArea!=null&&!newArea.isEmpty()){
+		cService.addArea(companyGuid, newArea);}
 		return manageAccount(companyGuid, model);
 	}
 
@@ -219,7 +180,8 @@ public class CompanyController {
 	public String updateArea(@PathVariable String companyGuid,
 			@RequestParam("newArea") String newArea,
 			@RequestParam("oldArea") String oldArea, Model model) {
-		cService.updateArea(companyGuid, oldArea, newArea);
+		if(newArea!=null&&!newArea.isEmpty()){
+		cService.updateArea(companyGuid, oldArea, newArea);}
 		return manageAccount(companyGuid, model);
 	}
 
@@ -247,7 +209,8 @@ public class CompanyController {
 	@RequestMapping(value = "/{companyGuid}/category/add", method = RequestMethod.POST)
 	public String addCategory(@PathVariable String companyGuid,
 			@RequestParam String newCategory, Model model) {
-		cService.addCategory(companyGuid, newCategory);
+		if(newCategory!=null&&!newCategory.isEmpty()){
+		cService.addCategory(companyGuid, newCategory);}
 		return manageAccount(companyGuid, model);
 	}
 
@@ -265,7 +228,8 @@ public class CompanyController {
 	public String updateCategory(@PathVariable String companyGuid,
 			@RequestParam("newCategory") String newCategory,
 			@RequestParam("oldCategory") String oldCategory, Model model) {
-		cService.updateCategory(companyGuid, oldCategory, newCategory);
+		if(newCategory!=null&&!newCategory.isEmpty()){
+		cService.updateCategory(companyGuid, oldCategory, newCategory);}
 		return manageAccount(companyGuid, model);
 	}
 
@@ -280,9 +244,8 @@ public class CompanyController {
 	public String updatePass(@PathVariable String companyGuid,
 			@Valid ChangePassForm changePassWordForm, BindingResult result,
 			Model model) {
-		if (result.hasErrors()
-				|| (!changePassWordForm.getConfirmPassword().equalsIgnoreCase(
-						changePassWordForm.getNewPassWord()))) {
+		if (result.hasErrors()) {
+			logger.info("something wrong..");
 			return "passwordUpdate";
 		}
 		CompanyEntity ce = cService.getCompanyById(companyGuid);

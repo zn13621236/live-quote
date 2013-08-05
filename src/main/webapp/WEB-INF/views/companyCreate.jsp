@@ -30,9 +30,6 @@
 				<td><form:label path="userName">User Name</form:label></td>
 				<td><form:input path="userName" /></td>
 				<td><form:errors path="userName"></form:errors></td>
-				<c:if test="${userExist}!=null">
-					<td><c:out value="${userExist}"></c:out></td>
-				</c:if>
 			</tr>
 			<tr>
 				<td><form:label path="password">Password</form:label></td>

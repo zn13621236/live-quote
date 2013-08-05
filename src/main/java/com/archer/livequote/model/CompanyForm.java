@@ -9,8 +9,10 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.archer.livequote.db.domain.CompanyEntity;
+import com.archer.livequote.validator.FieldMatch;
 import com.archer.livequote.validator.Unique;
 
+@FieldMatch(first = "password", second = "confirmPassword", message = "{FieldMatch.companyForm.confirmPassword}")
 public class CompanyForm {
 	@NotEmpty
 	@Size(min=2)

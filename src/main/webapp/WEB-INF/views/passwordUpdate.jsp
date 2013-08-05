@@ -23,7 +23,7 @@
 				<td><form:errors path="confirmPassword"></form:errors></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="sign up" /></td>
+				<td colspan="2"><input type="submit" value="update" /></td>
 			</tr>
 		</table>
 

@@ -16,7 +16,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = UniqueIDValidator.class)
 @Documented
 public @interface Unique {
-	 String message() default "{com.archer.livequote.validator.constraints.uniques}";
+	 String message() default "{com.archer.livequote.validator.uniques}";
 	 
 	    Class<?>[] groups() default {};
 	 

@@ -27,10 +27,10 @@ public class LoginController {
         return "login-error";
     }
 
-    @RequestMapping(value = "/secure/{companyGuid}/emailManagement", method = RequestMethod.GET)
-    public String manageEmail(@PathVariable String companyGuid, Model model) {
-        CompanyEntity ce = cdao.getByGuid(companyGuid);
-        model.addAttribute("company", ce);
-        return "manageAccount";
-    }
+//    @RequestMapping(value = "/secure/{companyGuid}/emailManagement", method = RequestMethod.GET)
+//    public String manageEmail(@PathVariable String companyGuid, Model model) {
+//        CompanyEntity ce = cdao.getByGuid(companyGuid);
+//        model.addAttribute("company", ce);
+//        return "manageAccount";
+//    }
 }

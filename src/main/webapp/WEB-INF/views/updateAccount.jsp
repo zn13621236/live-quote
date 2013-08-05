@@ -3,18 +3,29 @@
 <html>
 <head>
 <title>company</title>
+<style>
+.error {
+	color: #ff0000;
+}
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+</style>
+
 </head>
 <body>
-	<h2>update account</h2>
-	
-	
-	<form:form method="post" commandName="company2">
-		<table border="1">
+	<h2>update account</h2>	
+	<form:form method="post" commandName="updateForm">
+		<form:errors path="*" cssClass="errorblock" element="div" />
+		<table>
 			<tr>
 				<td>user name</td>
-				<td><c:out value="${company.userName}"></c:out></td>
-				<td><form:label path="userName">new username</form:label></td>
-				<td><form:input path="userName" /></td>
+				<td><c:out value="${company.userName}"></c:out></td>	
 			</tr>
 			<tr>
 				<td>company password</td>
@@ -26,6 +37,7 @@
 				<td><c:out value="${company.phone}"></c:out></td>
 				<td><form:label path="phone">new number</form:label></td>
 				<td><form:input path="phone" /></td>
+			    <td><form:errors path="phone" cssClass="error"/></td>
 			</tr>
 	
 			<tr>

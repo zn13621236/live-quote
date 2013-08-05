@@ -2,6 +2,9 @@ package com.archer.livequote.model;
 
 import javax.validation.constraints.Size;
 
+import com.archer.livequote.validator.FieldMatch;
+
+@FieldMatch(first = "newPassWord", second = "confirmPassword", message = "{FieldMatch.changePassWordForm.confirmPassword}")
 public class ChangePassForm {
 
 	private String oldPassWord;

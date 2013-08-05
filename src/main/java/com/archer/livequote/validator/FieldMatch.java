@@ -17,7 +17,7 @@ import javax.validation.Payload;
 @Documented
 public @interface FieldMatch
 {
-	String message() default "{constraints.fieldmatch}";
+	String message() default "{com.archer.livequote.validator.FieldMatch}";
 
     Class<?>[] groups() default {};
 

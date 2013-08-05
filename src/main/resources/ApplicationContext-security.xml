@@ -8,7 +8,7 @@
     <http auto-config="true" use-expressions="true">
         <!-- Login pages -->
         <form-login login-page="/login" authentication-failure-url="/login-error" username-parameter="username"
-                    password-parameter="password"/>
+                    password-parameter="password" authentication-success-handler-ref="authenticationSuccessHandler"/>
         <logout/>
         <!-- Security zones -->
         <intercept-url pattern="/secure/**" access="hasRole('ROLE_VENDOR')"/>
@@ -23,4 +23,9 @@
     <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
         <beans:constructor-arg value="512"/>
     </beans:bean>
+        <beans:bean id="authenticationSuccessHandler" class="com.archer.livequote.web.interceptor.AuthenticationSuccessHandler">
+        <beans:property name="defaultUrl" value="/company/" />
+    </beans:bean>
+    
+    
 </beans:beans>

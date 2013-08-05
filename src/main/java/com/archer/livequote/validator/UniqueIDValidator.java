@@ -23,8 +23,7 @@ public class UniqueIDValidator implements
 	}
 
 	public boolean isValid(Serializable property,
-			ConstraintValidatorContext cvContext) {
-		
+			ConstraintValidatorContext cvContext) {		
 		return crud.getByField(uniqueField, (String)property, entityClass)==null;
 	}
 

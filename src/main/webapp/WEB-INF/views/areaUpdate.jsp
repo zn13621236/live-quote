@@ -7,8 +7,8 @@
 <body>
 	<h2>update area</h2>
 	<form method="post" >
-	<c:out value="${company.companyName}"></c:out>
 	<table border="1">
+			<tr><c:out value="${company.companyName}"></c:out></tr>
 		<tr>
 			<td>old area</td>
 			<td width=300><c:out value="${oldArea}"></c:out></td>
