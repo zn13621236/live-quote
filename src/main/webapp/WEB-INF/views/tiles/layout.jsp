@@ -1,4 +1,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<html>
+<head>
+<title>area</title>
+</head>
 <table>
   <tr>
     <td colspan="2">
@@ -19,3 +23,4 @@
     </td>
   </tr>
 </table>
+</html>

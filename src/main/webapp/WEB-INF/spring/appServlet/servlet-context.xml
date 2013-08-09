@@ -17,18 +17,20 @@
 
     <!-- Enables the Spring MVC @Controller programming model -->
     <mvc:annotation-driven/>
+    
+    <context:component-scan base-package="com.archer.livequote"/>
 
     <!-- <mvc:annotation-driven validator="validator" /> -->
     <beans:bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
         <beans:property name="basename" value="messages"/>
     </beans:bean>
 
-  <!--   <beans:bean id="tilesResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <beans:bean id="tilesResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <beans:property name="order" value="0"/>
         <beans:property name="requestContextAttribute" value="requestContext"/>
-        <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+        <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
         <beans:property name="viewNames" value="titles.*"/>
-    </beans:bean> -->
+    </beans:bean>
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources
         in the /WEB-INF/views directory -->
@@ -40,7 +42,12 @@
         <beans:property name="prefix" value="/WEB-INF/views/"/>
         <beans:property name="suffix" value=".jsp"/>
     </beans:bean>
-
-    <context:component-scan base-package="com.archer.livequote"/>
-
+    
+    <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <beans:property name="definitions">
+            <beans:list>
+                <beans:value>/WEB-INF/tiles/livequote.xml</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>   
 </beans:beans>
