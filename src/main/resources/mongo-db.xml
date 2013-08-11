@@ -39,7 +39,7 @@
     </mongo:repositories>
 
     <!-- mongo db config bean -->
-    <beans profile="default">
+    <beans>
         <mongo:db-factory host="${mongo.host}" port="${mongo.port}" dbname="${mongo.db}"/>
     </beans>
 
