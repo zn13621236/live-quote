@@ -39,19 +39,19 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		QuoteRequest qr=new QuoteRequest();		
-		model.addAttribute("quoteRequest", qr );
-		return "home";
+		QuoteRequest quoteRequest=new QuoteRequest();		
+		model.addAttribute("quoteRequest", quoteRequest );
+		return "titles.user.quote";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String home(@Valid QuoteRequest qr, BindingResult result) {
+	public String home(@Valid QuoteRequest quoteRequest, BindingResult result) {
 		if(result.hasErrors()){
 			System.out.println("something is wrong!");
-			return "home";
+			return "titles.user.quote";
 		}
-		qs.sendQuote(qr);
-		return "success";
+		qs.sendQuote(quoteRequest);
+		return "titles.user.quoteSuccess";
 	}
 	
 }

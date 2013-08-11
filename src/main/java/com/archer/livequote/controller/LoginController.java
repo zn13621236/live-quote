@@ -1,11 +1,6 @@
 package com.archer.livequote.controller;
 
-import com.archer.livequote.dao.CompanyDao;
-import com.archer.livequote.db.domain.CompanyEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class LoginController {
-    @Autowired
-    private CompanyDao cdao;
+//    @Autowired
+//    private CompanyDao cdao;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return "login";
+        return "titles.company.login";
     }
 
     @RequestMapping(value = "/login-error", method = RequestMethod.GET)
     public String loginFailure() {
-        return "login-error";
+        return "titles.company.loginError";
     }
 
 //    @RequestMapping(value = "/secure/{companyGuid}/emailManagement", method = RequestMethod.GET)

@@ -20,7 +20,7 @@
 </head>
 <body>
 	<h2>update account</h2>	
-	<form:form method="post" commandName="updateForm">
+	<form:form method="post" commandName="updateAccountForm">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
@@ -37,13 +37,9 @@
 				<td><c:out value="${company.phone}"></c:out></td>
 				<td><form:label path="phone">new number</form:label></td>
 				<td><form:input path="phone" /></td>
+			    <td colspan="2"><input type="submit" value="update" /></td>
 			    <td><form:errors path="phone" cssClass="error"/></td>
 			</tr>
-	
-			<tr>
-				<td colspan="2"><input type="submit" value="update" /></td>
-			</tr>
-
 		</table>
 	</form:form>
 	

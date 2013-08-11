@@ -21,7 +21,7 @@ import com.archer.livequote.service.CompanyService;
 
 
 /**
- * If the url contain the re-auth parameter, it should redirect to payflow page, otherwise should redirect to home page
+ * 
  * 
  * @author Aaron Yang
  * 

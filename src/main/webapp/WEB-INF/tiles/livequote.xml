@@ -3,18 +3,81 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-    <definition name="base.definition"
-        template="/WEB-INF/views/tiles/layout.jsp">
-        <put-attribute name="title" value="live quote" />
-        <put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
-        <put-attribute name="body" value="body" />
-        <put-attribute name="menu" value="menu" />
-        <put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
-    </definition>
- 
-    <definition name="titles.company.create" extends="base.definition">
-        <put-attribute name="title" value="Live Quote" />
-        <put-attribute name="body" value="/WEB-INF/views/companyCreate.jsp" />
-    </definition>
- 
+	<definition name="base.definition" template="/WEB-INF/views/tiles/layout.jsp">
+		<put-attribute name="title" value="live quote" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="body" value="body" />
+		<put-attribute name="menu" value="menu" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="titles.company.signup" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/addCompany.jsp" />
+	</definition>
+
+	<definition name="titles.company.account" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/manageAccount.jsp" />
+	</definition>
+	<definition name="titles.company.updateAccount" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/updateAccount.jsp" />
+	</definition>
+	<definition name="titles.company.updateEmail" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/updateEmail.jsp" />
+	</definition>
+	<definition name="titles.company.removeEmail" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/removeEmail.jsp" />
+	</definition>
+	<definition name="titles.company.addEmail" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/addEmail.jsp" />
+	</definition>
+	<definition name="titles.company.addArea" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/addArea.jsp" />
+	</definition>
+	<definition name="titles.company.updateArea" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/updateArea.jsp" />
+	</definition>
+	<definition name="titles.company.removeArea" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/removeArea.jsp" />
+	</definition>
+		<definition name="titles.company.addCategory" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/addCategory.jsp" />
+	</definition>
+	<definition name="titles.company.updateCategory" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/updateCategory.jsp" />
+	</definition>
+	<definition name="titles.company.removeCategory" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/removeCategory.jsp" />
+	</definition>
+		<definition name="titles.company.updatePassword" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/updatePassword.jsp" />
+	</definition>
+			<definition name="titles.user.quote" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+	</definition>
+			<definition name="titles.company.login" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
+			<definition name="titles.company.loginError" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/login-error.jsp" />
+	</definition>
+			<definition name="titles.user.quoteSuccess" extends="base.definition">
+		<put-attribute name="title" value="Live Quote" />
+		<put-attribute name="body" value="/WEB-INF/views/success.jsp" />
+	</definition>
 </tiles-definitions>

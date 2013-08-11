@@ -10,19 +10,20 @@
 	<form action="j_spring_security_check" id="login" method="post">
 		<table>
 			<tr>
-			<td>
-				<input type="text" id="username" name="username">
-			</td>
+				<td>
+					<p>user name</p>
+				</td>
+				<td><input type="text" id="username" name="username"></td>
 			</tr>
 			<tr>
-			<td>
-				<input type="password" id="password" name="password">
-			</td>
+				<td>
+					<p>password</p>
+				</td>
+				<td><input type="password" id="password" name="password">
+				</td>
 			</tr>
 			<tr>
-			<td>
-				<input type="submit" />
-			</td>
+				<td><input type="submit" value="login" /></td>
 			</tr>
 		</table>
 	</form>

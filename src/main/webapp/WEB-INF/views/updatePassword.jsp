@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h2>Change password</h2>
-	<form:form method="post" commandName="changePassWordForm">
+	<form:form method="post" commandName="changePassForm">
 		<table>
 		<tr>
 				<td><form:label path="oldPassWord">Old Password</form:label></td>

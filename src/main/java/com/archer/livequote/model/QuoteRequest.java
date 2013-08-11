@@ -15,6 +15,7 @@ public class QuoteRequest {
 	@NotEmpty
 	private String category;
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	@NotEmpty
 	private Date serviceTime;
 	private String detail;
 	private List<CompanyEntity> perferedCompany;
