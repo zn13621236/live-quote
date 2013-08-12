@@ -28,7 +28,7 @@ public class ResetPasswordController {
     @Autowired
     private AesEncodedTokenService aesEncodedTokenService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/password")
+    @RequestMapping(method = RequestMethod.GET, value = "/password/reset")
     public String handleRequestForgotPassword(@RequestParam("t") String encodedToken, @RequestParam("h") String hash, BindingResult result) {
         if (StringUtils.isBlank(encodedToken) || StringUtils.isBlank(hash)) {
             result.reject("");
