@@ -1,7 +1,9 @@
 package com.archer.livequote.fyp.service;
 
 import com.archer.livequote.fyp.domain.Token;
+import com.archer.livequote.fyp.exception.ExpiredTokenException;
 import com.archer.livequote.fyp.exception.FypException;
+import com.archer.livequote.fyp.exception.InvalidTokenException;
 import com.archer.livequote.fyp.util.EncryptUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +19,6 @@ import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import static com.archer.livequote.fyp.util.EncryptUtils.urlEncode;
@@ -80,23 +81,23 @@ public class AesEncodedTokenService implements TokenService, InitializingBean {
     public Token verify(String encodedToken, String hash) {
         Stopwatch stopwatch = new Stopwatch().start();
         String hashedToken = md5PasswordEncoder.encodePassword(encodedToken, salt);
-
         if (hashedToken.equals(hash)) {
-            String json = EncryptUtils.decryptText(bytesEncryptor, encodedToken);
             try {
+                String json = EncryptUtils.decryptText(bytesEncryptor, encodedToken);
                 Token token = objectMapper.readValue(json, Token.class);
                 logger.info("Fyp token is {}", token);
                 if (!token.isExpired(tokenExpiration)) {
                     return token;
+                } else {
+                    throw new ExpiredTokenException("Token is expired");
                 }
-            } catch (IOException e) {
-                logger.error("Parse token failure, due to: ", e);
-                return null;
+            } catch (Exception e) {
+                throw new InvalidTokenException(e);
             } finally {
                 logger.info("Verify fyp url takes {} milliseconds", stopwatch.stop().elapsed(TimeUnit.MILLISECONDS));
             }
         }
-        return null;
+        throw new InvalidTokenException("Token was changed by man in middle");
     }
 
     @Override

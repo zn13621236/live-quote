@@ -1,6 +1,7 @@
 package com.archer.livequote.fyp.service;
 
 import com.archer.livequote.fyp.domain.Token;
+import com.archer.livequote.fyp.exception.InvalidTokenException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,5 +33,10 @@ public class AesEncodedTokenServiceTest {
         Assert.assertEquals(token.getUsername(), "a@real.com");
         Assert.assertEquals(token.getGuid(), "1");
         Assert.assertEquals(token.getTimestamp(), 1376264730452L);
+    }
+
+    @Test(expected = InvalidTokenException.class)
+    public void testInvalidTokenVerify() throws Exception {
+        tokenService.verify("abcde", "06a697d0ba7753d424bd70c9a26da576");
     }
 }
