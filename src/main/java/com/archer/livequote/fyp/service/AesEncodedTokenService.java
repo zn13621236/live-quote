@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.crypto.encrypt.BytesEncryptor;
-import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
@@ -106,6 +106,6 @@ public class AesEncodedTokenService implements TokenService, InitializingBean {
         Assert.hasText(baseUrl, "Fyp url must be specified");
         Assert.hasText(privateKey, "AES private key must be specified");
         Assert.hasText(salt, "Salt must be specified");
-        bytesEncryptor = Encryptors.standard(privateKey, salt);
+        bytesEncryptor = new AesBytesEncryptor(privateKey, salt, KeyGenerators.secureRandom(16), 128);
     }
 }
