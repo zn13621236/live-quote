@@ -1,7 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <html>
 <head>
-<title>area</title>
+<title>home</title><link href='<c:url value="/css/style.css"/>' rel="stylesheet" type="text/css" />
 </head>
 <table>
   <tr>
@@ -10,9 +10,6 @@
     </td>
   </tr>
   <tr>
-    <td>
-      <tiles:insertAttribute name="menu" />
-    </td>
     <td>
       <tiles:insertAttribute name="body" />
     </td>

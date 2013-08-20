@@ -3,14 +3,14 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Quote home page</title>
+<title>Quote home page</title><link href='<c:url value="/css/style.css"/>' rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<h1>Get quote.</h1>
 	<table>
 		<form:form method="post" commandName="quoteRequest">
 
-			<tr>
+		<!-- 	<tr>
 				<td><form:label path="category">Category</form:label></td>
 				<td><form:radiobutton path="category" value="roofing"
 						label="roofing" /> <form:radiobutton path="category"
@@ -18,9 +18,9 @@
 						path="category" value="plumbing" label="plumbing" /></td>
 				<td><form:errors path="category"></form:errors></td>
 			</tr>
-
+ -->
 			<tr>
-				<td>service time:</td>
+				<td class="test">service time:</td>
 				<td><form:input path="serviceTime" placeholder="MM/DD/YYYY" /></td>
 				<td><form:errors path="serviceTime"></form:errors></td>
 			</tr>

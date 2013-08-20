@@ -7,7 +7,7 @@
 		<put-attribute name="title" value="live quote" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
 		<put-attribute name="body" value="body" />
-		<put-attribute name="menu" value="menu" />
+		<!--put-attribute name="menu" value="menu" /-->
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 	</definition>
 
